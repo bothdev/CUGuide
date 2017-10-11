@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_home" android:title="Home"></item>
+    <item android:id="@+id/menu_university" android:title="University"></item>
+    <item android:id="@+id/menu_news" android:title="News"></item>
+    <item android:id="@+id/menu_job" android:title="Job"></item>
+    <item android:id="@+id/menu_scholarship" android:title="Scholarship"></item>
+    <item android:id="@+id/menu_bookmark" android:title="Bookmark"></item>
+    <item android:id="@+id/menu_setting" android:title="Setting"></item>
+    <item android:id="@+id/menu_help" android:title="Help"></item>
+    <item android:id="@+id/menu_about" android:title="About us"></item>
+</menu>
