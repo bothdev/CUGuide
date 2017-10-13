@@ -40,7 +40,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("SchoolGuide");
+        //setTitle("Home");
 
         //Set Onclick Navigation Drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -64,23 +64,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_home){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Home");
         } else if(id == R.id.menu_university){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("University");
         } else if(id == R.id.menu_news){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("News");
         } else if(id == R.id.menu_job){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Job");
         } else if(id == R.id.menu_scholarship){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Scholarship");
         } else if(id == R.id.menu_bookmark){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Bookmark");
         } else if(id == R.id.menu_setting){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Setting");
         } else if(id == R.id.menu_help){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Help");
         } else if(id == R.id.menu_about){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("About us");
         }
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
