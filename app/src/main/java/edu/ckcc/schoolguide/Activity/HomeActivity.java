@@ -26,8 +26,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        //ប្តូរពណ៌ Status Bar
-        //បានតែចំពោះ Version 21 ឡើង ឬ Lollipop
+
         if (Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -35,24 +34,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             window.setStatusBarColor(this.getResources().getColor(R.color.statusBar));
         }
 
-        //រៀបចំ Toolbar និងដាក់ឈ្មោះ
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("SchoolGuide");
 
-        //Set Onclick Navigation Drawer
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Set DrawerToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        //នៅពេលដែលបើកកម្មវីធីមក វានឹងបង្ហាញផ្ទាំង Home មុនគេ
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
         int lastSeletedMenu = sharedPreferences.getInt("last-selected-menu", R.id.menu_home);
         MenuItem selectedItem = navigationView.getMenu().findItem(lastSeletedMenu);
@@ -64,23 +58,23 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_home){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Home");
         } else if(id == R.id.menu_university){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("University");
         } else if(id == R.id.menu_news){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("News");
         } else if(id == R.id.menu_job){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Job");
         } else if(id == R.id.menu_scholarship){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Scholarship");
         } else if(id == R.id.menu_bookmark){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Bookmark");
         } else if(id == R.id.menu_setting){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Setting");
         } else if(id == R.id.menu_help){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("Help");
         } else if(id == R.id.menu_about){
-            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+            setTitle("About us");
         }
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerLayout.closeDrawer(GravityCompat.START);
