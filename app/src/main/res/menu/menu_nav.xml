@@ -1,39 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menu_home"
-        android:title="Home"
-        android:icon="@drawable/ic_house" />
-    <item
-        android:id="@+id/menu_university"
-        android:title="University"
-        android:icon="@drawable/ic_university_campus" />
-    <item
-        android:id="@+id/menu_news"
-        android:title="News"
-        android:icon="@drawable/ic_newspaper" />
-    <item
-        android:id="@+id/menu_job"
-        android:title="Job"
-        android:icon="@drawable/ic_briefcase" />
-    <item
-        android:id="@+id/menu_scholarship"
-        android:title="Scholarship"
-        android:icon="@drawable/ic_scholar" />
-    <item
-        android:id="@+id/menu_bookmark"
-        android:title="Bookmark"
-        android:icon="@drawable/ic_open_book" />
-    <item
-        android:id="@+id/menu_setting"
-        android:title="Setting"
-        android:icon="@drawable/ic_settings" />
-    <item
-        android:id="@+id/menu_help"
-        android:title="Help"
-        android:icon="@drawable/ic_help" />
-    <item
-        android:id="@+id/menu_about"
-        android:title="About us"
-        android:icon="@drawable/ic_about_us" />
+    <item android:title="School Guide">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/menu_home"
+                    android:title="Home"
+                    android:icon="@drawable/ic_house" />
+                <item
+                    android:id="@+id/menu_university"
+                    android:title="University"
+                    android:icon="@drawable/ic_university_campus" />
+                <item
+                    android:id="@+id/menu_news"
+                    android:title="News"
+                    android:icon="@drawable/ic_newspaper" />
+                <item
+                    android:id="@+id/menu_job"
+                    android:title="Job"
+                    android:icon="@drawable/ic_briefcase" />
+                <item
+                    android:id="@+id/menu_scholarship"
+                    android:title="Scholarship"
+                    android:icon="@drawable/ic_scholar" />
+                <item
+                    android:id="@+id/menu_bookmark"
+                    android:title="Bookmark"
+                    android:icon="@drawable/ic_open_book" />
+                <item
+                    android:id="@+id/menu_setting"
+                    android:title="Setting"
+                    android:icon="@drawable/ic_settings" />
+                <item
+                    android:id="@+id/menu_help"
+                    android:title="Help"
+                    android:icon="@drawable/ic_help" />
+                <item
+                    android:id="@+id/menu_about"
+                    android:title="About us"
+                    android:icon="@drawable/ic_about_us" />
+            </group>
+        </menu>
+    </item>
 </menu>
