@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toast;
+
 import edu.ckcc.schoolguide.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -59,6 +62,28 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_home){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_university){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_news){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_job){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_scholarship){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_bookmark){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_setting){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_help){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        } else if(id == R.id.menu_about){
+            Toast.makeText(this, item.getTitle(), Toast.LENGTH_SHORT).show();
+        }
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 }
