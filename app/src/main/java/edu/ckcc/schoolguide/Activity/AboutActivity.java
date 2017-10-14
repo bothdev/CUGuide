@@ -7,27 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.style.BackgroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
-
 import edu.ckcc.schoolguide.R;
 
 /**
  * Created by Chhorn Sockhym on 2017-10-14.
  */
 
-public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
-        // Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tlb_main);
-        setSupportActionBar(toolbar);
-        setTitle("News");
-        // Show back button on toolbar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -37,8 +30,9 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         finish();
     }
 
+
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    public boolean onNavigationItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
             finish();
         }

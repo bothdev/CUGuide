@@ -38,20 +38,17 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar();
+        setTitle("School Guide");
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        // Add actionbar drawer toggle
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        int lastSeletedMenu = sharedPreferences.getInt("last-selected-menu", R.id.menu_home);
-        MenuItem selectedItem = navigationView.getMenu().findItem(lastSeletedMenu);
-        selectedItem.setCheckable(true);
-        onNavigationItemSelected(selectedItem);
     }
 
     @Override
@@ -74,10 +71,11 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if(id == R.id.menu_help){
             setTitle("Help");
         } else if(id == R.id.menu_about){
+            Intent newsIntent = new Intent(this, AboutActivity.class);
+            startActivity(newsIntent);
             setTitle("About us");
         }
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerLayout.closeDrawer(GravityCompat.START);
-        return true;
+
+        return false;
     }
 }
