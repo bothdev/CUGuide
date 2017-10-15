@@ -18,6 +18,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import edu.ckcc.schoolguide.Fragment.HomeFragment;
+import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             onHomeClick();
         } else if(id == R.id.menu_university){
             setTitle("University");
+            onUniversityClick();
         } else if(id == R.id.menu_news){
             setTitle("News");
         } else if(id == R.id.menu_job){
@@ -99,6 +101,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         HomeFragment homeFragment = new HomeFragment();
-        fragmentTransaction.replace(R.id.main_frame, homeFragment).commit();
+        fragmentTransaction.replace(R.id.home_frame, homeFragment).commit();
+    }
+
+    private void onUniversityClick(){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        UniversityFragment universityFragment = new UniversityFragment();
+        fragmentTransaction.replace(R.id.home_frame, universityFragment).commit();
     }
 }
