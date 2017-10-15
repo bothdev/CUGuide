@@ -20,23 +20,25 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_home);
 
-
-
-
+        //Set toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("About us");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
-    public void onBackButtonClick(View view){
-        finish();
-    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-
         return super.onOptionsItemSelected(item);
     }
 }

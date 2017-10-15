@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.Startup;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import edu.ckcc.schoolguide.Activity.HomeActivity;
 import edu.ckcc.schoolguide.R;
 
 public class LoginActivity extends Activity {
