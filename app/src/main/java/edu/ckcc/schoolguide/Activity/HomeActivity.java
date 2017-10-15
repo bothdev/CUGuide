@@ -49,13 +49,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        int lastSeletedMenu = sharedPreferences.getInt("last-selected-menu",R.id.menu_home);
+        MenuItem selectedItem = navigationView.getMenu().findItem(lastSeletedMenu);
+        selectedItem.setCheckable(true);
+        onNavigationItemSelected(selectedItem);
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_home){
-            setTitle("Home");
+            //setTitle("Home");
         } else if(id == R.id.menu_university){
             setTitle("University");
         } else if(id == R.id.menu_news){
