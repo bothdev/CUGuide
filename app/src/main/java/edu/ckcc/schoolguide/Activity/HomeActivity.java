@@ -17,8 +17,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import edu.ckcc.schoolguide.Fragment.HomeFragment;
-import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -67,10 +65,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if (id == R.id.menu_home){
             setTitle("School Guide");
-            onHomeClick();
         } else if(id == R.id.menu_university){
             setTitle("University");
-            onUniversityClick();
         } else if(id == R.id.menu_news){
             setTitle("News");
         } else if(id == R.id.menu_job){
@@ -82,32 +78,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if(id == R.id.menu_setting){
             setTitle("Setting");
         } else if(id == R.id.menu_help){
-            setTitle("Help");
+            Intent aboutIntent = new Intent(this, HelpActivity.class);
+            startActivity(aboutIntent);
         } else if(id == R.id.menu_about){
             Intent newsIntent = new Intent(this, AboutActivity.class);
             startActivity(newsIntent);
         }
-
+        
         //Close drawer
-        if(id != R.id.menu_about) {
+        if(id == R.id.menu_home || id == R.id.menu_university || id == R.id.menu_news || id == R.id.menu_job || id == R.id.menu_scholarship || id == R.id.menu_bookmark){
             DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerLayout.closeDrawer(GravityCompat.START);
         }
 
         return true;
-    }
-
-    private void onHomeClick(){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        HomeFragment homeFragment = new HomeFragment();
-        fragmentTransaction.replace(R.id.home_frame, homeFragment).commit();
-    }
-
-    private void onUniversityClick(){
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        UniversityFragment universityFragment = new UniversityFragment();
-        fragmentTransaction.replace(R.id.home_frame, universityFragment).commit();
     }
 }

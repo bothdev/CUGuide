@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/about_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/statusBar"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
+    </android.support.v7.widget.Toolbar>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/uni"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_university_campus" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/uni"
+            android:text="University"
+            android:id="@+id/tuniver"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tuniver"
+            android:layout_toRightOf="@id/uni"
+            android:id="@+id/Udes"
+            android:layout_marginBottom="20dp"
+            android:text="List all universities in Cambodia especially in Phnom Penh. "/>
+
+        <ImageView
+            android:id="@+id/news"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="20dp"
+            android:layout_below="@id/Udes"
+            android:src="@drawable/ic_newspaper" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/news"
+            android:layout_below="@id/Udes"
+            android:text="News"
+            android:layout_marginTop="30dp"
+            android:id="@+id/tnews"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tnews"
+            android:layout_toRightOf="@id/uni"
+            android:id="@+id/Ndes"
+            android:layout_marginBottom="10dp"
+            android:text="List all news in the wold especially in Phnom Penh"/>
+
+
+        <ImageView
+            android:id="@+id/Job"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/Ndes"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_briefcase"
+            android:layout_marginTop="0dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/Job"
+            android:layout_below="@id/tnews"
+            android:text="Job"
+            android:layout_marginTop="60dp"
+            android:id="@+id/tjob"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tjob"
+            android:layout_toRightOf="@id/uni"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/Jdes"
+            android:text="List all jobs in Cambodia especially in Phnom Penh."/>
+
+        <ImageView
+            android:id="@+id/scholar"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/Jdes"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_scholar" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/Job"
+            android:layout_below="@id/Jdes"
+            android:text="Scholarship"
+            android:layout_marginTop="25dp"
+            android:id="@+id/tscholar"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tscholar"
+            android:layout_toRightOf="@id/uni"
+            android:id="@+id/sdes"
+            android:layout_marginBottom="20dp"
+            android:text="List all scholarship."/>
+
+
+        <ImageView
+            android:id="@+id/bookmark"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/sdes"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_open_book"
+            android:layout_marginTop="0dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/Job"
+            android:layout_below="@id/sdes"
+            android:text="Bookmark"
+            android:layout_marginTop="25dp"
+            android:id="@+id/tbookmark"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tbookmark"
+            android:layout_toRightOf="@id/uni"
+            android:id="@+id/bmdes"
+            android:layout_marginBottom="20dp"
+            android:text="Saved Title on your bookmark"/>
+
+        <ImageView
+            android:id="@+id/setting"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/bmdes"
+            android:layout_margin="20dp"
+            android:src="@drawable/ic_settings" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/Job"
+            android:layout_below="@id/bmdes"
+            android:text="Setting"
+            android:layout_marginTop="30dp"
+            android:id="@+id/tsetting"
+            android:textColor="@color/colorPrimaryDark" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tsetting"
+            android:layout_toRightOf="@id/uni"
+            android:id="@+id/setdes"
+            android:text="Change color or change style of App "/>
+    </RelativeLayout>
+</LinearLayout>
