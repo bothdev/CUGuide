@@ -12,8 +12,8 @@
                     android:title="University"
                     android:icon="@drawable/ic_university_campus" />
                 <item
-                    android:id="@+id/menu_news"
-                    android:title="News"
+                    android:id="@+id/menu_events"
+                    android:title="Events"
                     android:icon="@drawable/ic_newspaper" />
                 <item
                     android:id="@+id/menu_job"
@@ -23,10 +23,6 @@
                     android:id="@+id/menu_scholarship"
                     android:title="Scholarship"
                     android:icon="@drawable/ic_scholar" />
-                <item
-                    android:id="@+id/menu_bookmark"
-                    android:title="Bookmark"
-                    android:icon="@drawable/ic_open_book" />
                 <item
                     android:id="@+id/menu_setting"
                     android:title="Setting"

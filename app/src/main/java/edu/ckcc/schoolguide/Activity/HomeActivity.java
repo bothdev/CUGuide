@@ -18,6 +18,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import edu.ckcc.schoolguide.R;
+import edu.ckcc.schoolguide.model.Scholarship;
+import edu.ckcc.schoolguide.model.University;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private DrawerLayout drawerLayout;
@@ -62,31 +64,35 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Intent intent;
         int id = item.getItemId();
         if (id == R.id.menu_home){
-            setTitle("School Guide");
+            setTitle("Home");
         } else if(id == R.id.menu_university){
-            setTitle("University");
-        } else if(id == R.id.menu_news){
-            setTitle("News");
+            intent = new Intent(this, UniversityActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.menu_events){
+            intent = new Intent(this, EventsActivity.class);
+            startActivity(intent);
         } else if(id == R.id.menu_job){
-            setTitle("Job");
+            intent = new Intent(this, JobActivity.class);
+            startActivity(intent);
         } else if(id == R.id.menu_scholarship){
-            setTitle("Scholarship");
-        } else if(id == R.id.menu_bookmark){
-            setTitle("Bookmark");
+            intent = new Intent(this, ScholarshipActivity.class);
+            startActivity(intent);
         } else if(id == R.id.menu_setting){
-            setTitle("Setting");
+            intent = new Intent(this, SettingActivity.class);
+            startActivity(intent);
         } else if(id == R.id.menu_help){
-            Intent aboutIntent = new Intent(this, HelpActivity.class);
-            startActivity(aboutIntent);
+            intent = new Intent(this, HelpActivity.class);
+            startActivity(intent);
         } else if(id == R.id.menu_about){
-            Intent newsIntent = new Intent(this, AboutActivity.class);
-            startActivity(newsIntent);
+            intent = new Intent(this, AboutActivity.class);
+            startActivity(intent);
         }
         
         //Close drawer
-        if(id == R.id.menu_home || id == R.id.menu_university || id == R.id.menu_news || id == R.id.menu_job || id == R.id.menu_scholarship || id == R.id.menu_bookmark){
+        if(id == R.id.menu_home ){
             DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawerLayout.closeDrawer(GravityCompat.START);
         }

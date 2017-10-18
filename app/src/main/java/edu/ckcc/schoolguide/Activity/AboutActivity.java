@@ -19,14 +19,15 @@ import edu.ckcc.schoolguide.R;
 /**
  * Created by Chhorn Sockhym on 2017-10-14.
  */
-
+ 
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        if (Build.VERSION.SDK_INT>=21){
+        ///////////////////////////////
+		if (Build.VERSION.SDK_INT>=21){
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -39,7 +40,10 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         getSupportActionBar();
         setTitle("About Us");
+		
+		//Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		///////////////////////////////////
     }
 
     @Override
