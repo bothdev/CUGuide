@@ -1,12 +1,16 @@
-# SchoolGuide
-Members:
+# SchoolGuideProject
+
+# Members:
   - Chhorn Sockhym
   - Chhoeurn Vorreakboth
-Project:
+
+# Project:
   - School Guide
-Description:
+
+# Description:
   - help student to find University, Events, Job, Scholarship.
-Features:
+
+# Features:
   - List and Detail of University
   - List and Detail of Events
   - List and Detail of Job
