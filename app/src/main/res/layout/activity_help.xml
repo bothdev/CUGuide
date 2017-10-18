@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <android.support.v7.widget.Toolbar
         android:id="@+id/help_toolbar"
         android:layout_width="match_parent"
@@ -10,22 +9,18 @@
         android:background="@color/statusBar"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
     </android.support.v7.widget.Toolbar>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <ImageView
                 android:id="@+id/uni"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:src="@drawable/ic_university_campus" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -42,7 +37,6 @@
                 android:id="@+id/Udes"
                 android:layout_marginBottom="20dp"
                 android:text="List all universities in Cambodia especially in Phnom Penh. "/>
-
             <ImageView
                 android:id="@+id/news"
                 android:layout_width="60dp"
@@ -67,8 +61,6 @@
                 android:id="@+id/Ndes"
                 android:layout_marginBottom="10dp"
                 android:text="List all news in the wold especially in Phnom Penh"/>
-
-
             <ImageView
                 android:id="@+id/Job"
                 android:layout_width="60dp"
@@ -94,7 +86,6 @@
                 android:layout_marginBottom="20dp"
                 android:id="@+id/Jdes"
                 android:text="List all jobs in Cambodia especially in Phnom Penh."/>
-
             <ImageView
                 android:id="@+id/scholar"
                 android:layout_width="60dp"
@@ -119,8 +110,6 @@
                 android:id="@+id/sdes"
                 android:layout_marginBottom="20dp"
                 android:text="List all scholarship."/>
-
-
             <ImageView
                 android:id="@+id/bookmark"
                 android:layout_width="60dp"
@@ -146,7 +135,6 @@
                 android:id="@+id/bmdes"
                 android:layout_marginBottom="20dp"
                 android:text="Saved Title on your bookmark"/>
-
             <ImageView
                 android:id="@+id/setting"
                 android:layout_width="60dp"
@@ -171,6 +159,5 @@
                 android:id="@+id/setdes"
                 android:text="Change color or change style of App "/>
         </RelativeLayout>
-
     </ScrollView>
 </LinearLayout>

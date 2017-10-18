@@ -15,10 +15,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import edu.ckcc.schoolguide.R;
-
-/**
- * Created by Chhorn Sockhym on 2017-10-14.
- */
  
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override

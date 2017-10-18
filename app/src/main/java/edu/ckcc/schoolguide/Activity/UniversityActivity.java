@@ -19,7 +19,6 @@ public class UniversityActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_university);
 
-
         ///////////////////////////////
         if (Build.VERSION.SDK_INT>=21){
             Window window = this.getWindow();
@@ -42,7 +41,6 @@ public class UniversityActivity extends AppCompatActivity implements NavigationV
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         if(item.getItemId() == android.R.id.home){
             finish();
         }

@@ -7,10 +7,10 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class UserResponse {
-    @SerializedName("_code")
+    @SerializedName("code")
     public int code;
-    @SerializedName("_message")
+    @SerializedName("message")
     public String message;
-    @SerializedName("_id")
+    @SerializedName("id")
     public int id;
 }

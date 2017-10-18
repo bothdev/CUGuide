@@ -28,7 +28,6 @@ import com.google.gson.Gson;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
-import edu.ckcc.schoolguide.model.Scholarship;
 
 public class ScholarshipActivity extends AppCompatActivity {
 
@@ -65,12 +64,14 @@ public class ScholarshipActivity extends AppCompatActivity {
         articleAdapter = new ArticleAdapter();
         rclScholarship.setAdapter(articleAdapter);
 
-        if(App.getInstance(this).getArticles() == null){
+        loadArticlesFromServer();
+
+        /*if(App.getInstance(this).getArticles() == null){
             loadArticlesFromServer();
         }else{
             Article[] articles = App.getInstance(this).getArticles();
             articleAdapter.setArticles(articles);
-        }
+        }*/
     }
 
     @Override
@@ -139,9 +140,6 @@ public class ScholarshipActivity extends AppCompatActivity {
         */
         requestQueue.add(articlesRequest);
     }
-
-
-
 
     // Article Adapter
     class ArticleViewHolder extends RecyclerView.ViewHolder {

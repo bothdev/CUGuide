@@ -32,7 +32,10 @@ import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
-public class JobActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class JobActivity extends AppCompatActivity {
+
+    private RecyclerView rclJob;
+    private JobActivity.ArticleAdapter articleAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,7 @@ public class JobActivity extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_job);
 
         ///////////////////////////////
-        if (Build.VERSION.SDK_INT >= 21) {
+        if (Build.VERSION.SDK_INT>=21){
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -57,6 +60,21 @@ public class JobActivity extends AppCompatActivity implements NavigationView.OnN
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
+
+        rclJob = (RecyclerView)findViewById(R.id.rcl_job);
+        rclJob.setLayoutManager(new LinearLayoutManager(this));
+
+        articleAdapter = new JobActivity.ArticleAdapter();
+        rclJob.setAdapter(articleAdapter);
+
+        loadArticlesFromServer();
+
+        /*if(App.getInstance(this).getArticles() == null){
+            loadArticlesFromServer();
+        }else{
+            Article[] articles = App.getInstance(this).getArticles();
+            articleAdapter.setArticles(articles);
+        }*/
     }
 
     @Override
@@ -69,8 +87,135 @@ public class JobActivity extends AppCompatActivity implements NavigationView.OnN
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return super.onOptionsItemSelected(item);
+
+    private void loadArticlesFromServer(){
+        String url = "https://schoolguideproject.000webhostapp.com/schoolguide/job.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Gson gson = new Gson();
+                Article[] articles = gson.fromJson(response, Article[].class);
+                // Pass data to adapter for displaying
+                articleAdapter.setArticles(articles);
+                // Save data to Singleton for using later
+                App.getInstance(JobActivity.this).setArticles(articles);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(JobActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
+                Log.d("School Guide", "Load article error: " + error.getMessage());
+            }
+        });
+        /*
+        JsonArrayRequest articlesRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("ckcc", "Load data success");
+                Article[] articles = new Article[response.length()];
+                for(int i=0; i<response.length(); i++){
+                    try {
+                        JSONObject articleJson = response.getJSONObject(i);
+                        int id = articleJson.getInt("_id");
+                        String title = articleJson.getString("_title");
+                        String imageUrl = articleJson.getString("_image_url");
+                        Article article = new Article(title, 0, imageUrl);
+                        articles[i] = article;
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                // Pass data to adapter for displaying
+                articleAdapter.setArticles(articles);
+                // Save data to Singleton for using later
+                App.getInstance(NewsActivity.this).setArticles(articles);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(NewsActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
+                Log.d("ckcc", "Load article error: " + error.getMessage());
+            }
+        });
+        */
+        requestQueue.add(articlesRequest);
+    }
+
+
+
+
+    // Article Adapter
+    class ArticleViewHolder extends RecyclerView.ViewHolder {
+
+        TextView txtTitle;
+        TextView txtDes;
+        NetworkImageView imgArticle;
+
+        public ArticleViewHolder(View itemView) {
+            super(itemView);
+
+            txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
+            txtDes = (TextView)itemView.findViewById(R.id.txt_des);
+            imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getAdapterPosition();
+                    Article article = articleAdapter.getArticles()[position];
+                    Intent intent = new Intent(JobActivity.this, ArticleDetailActivity.class);
+
+                    //intent.putExtra("title", article.getTitle());
+                    //intent.putExtra("image_url", article.getImageUrl());
+
+                    Global.selectedArticle = article;
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    class ArticleAdapter extends RecyclerView.Adapter<JobActivity.ArticleViewHolder> {
+
+        private  Article[] articles;
+
+        public ArticleAdapter(){
+            articles = new Article[0];
+        }
+
+        public void setArticles(Article[] articles) {
+            this.articles = articles;
+            notifyDataSetChanged();
+        }
+
+        public Article[] getArticles() {
+            return articles;
+        }
+
+        @Override
+        public JobActivity.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(JobActivity.this).inflate(R.layout.viewholder_article, parent, false);
+            JobActivity.ArticleViewHolder articleViewHolder = new JobActivity.ArticleViewHolder(view);
+            return articleViewHolder;
+        }
+
+        @Override
+        public void onBindViewHolder(JobActivity.ArticleViewHolder holder, int position) {
+            Article article = articles[position];
+            holder.txtTitle.setText(article.getTitle());
+            holder.txtDes.setText(article.getDescription());
+            // Display image using NetworkImageView
+            ImageLoader imageLoader = App.getInstance(JobActivity.this).getImageLoader();
+            holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
+            holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
+            holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
+        }
+
+        @Override
+        public int getItemCount() {
+            return articles.length;
+        }
     }
 }

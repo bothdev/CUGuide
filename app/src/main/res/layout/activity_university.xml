@@ -14,28 +14,32 @@
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <ImageView
+        android:padding="10dp">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:src="@drawable/rupp"
-            />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ"
-            android:textStyle="bold"
-            android:paddingTop="10dp"
-            android:textSize="15sp"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ ជាគ្រឹះស្ថានឧត្តមសិក្សាសារធារណៈ ដែលមានទីតាំងនៅមហាវិធីសហព័ន្ធរុស្សី សង្កាត់ទឹកល្អក់១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ។"/>
-
-    </LinearLayout>
-
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:src="@drawable/rupp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ"
+                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:textSize="20dp"
+                android:gravity="center"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ ជាគ្រឹះស្ថានឧត្តមសិក្សាសារធារណៈ ដែលមានទីតាំងនៅមហាវិធីសហព័ន្ធរុស្សី សង្កាត់ទឹកល្អក់១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ។"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

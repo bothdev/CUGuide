@@ -16,10 +16,6 @@ import android.view.WindowManager;
 
 import edu.ckcc.schoolguide.R;
 
-/**
- * Created by Chhorn Sockhym on 2017-10-14.
- */
-
 public class HelpActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

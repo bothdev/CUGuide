@@ -2,6 +2,7 @@ package edu.ckcc.schoolguide.Activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -13,16 +14,32 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import edu.ckcc.schoolguide.R;
-import edu.ckcc.schoolguide.model.Scholarship;
-import edu.ckcc.schoolguide.model.University;
+import edu.ckcc.schoolguide.Startup.MainActivity;
+import edu.ckcc.schoolguide.model.App;
+import edu.ckcc.schoolguide.model.Article;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setTitle("School Guide");
 
         //Set Onclick Navigation Drawer
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //Set DrawerToggle
@@ -60,6 +77,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         MenuItem selectedItem = navigationView.getMenu().findItem(lastSeletedMenu);
         selectedItem.setCheckable(true);
         onNavigationItemSelected(selectedItem);
+
     }
 
     @Override
@@ -67,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         Intent intent;
         int id = item.getItemId();
         if (id == R.id.menu_home){
-            setTitle("Home");
+            setTitle(R.string.app_name);
         } else if(id == R.id.menu_university){
             intent = new Intent(this, UniversityActivity.class);
             startActivity(intent);
