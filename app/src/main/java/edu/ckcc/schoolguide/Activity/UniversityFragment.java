@@ -1,10 +1,10 @@
 package edu.ckcc.schoolguide.Activity;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,39 +32,21 @@ import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
-public class UniversityActivity extends AppCompatActivity{
+public class UniversityFragment extends Fragment{
 
     private RecyclerView rclUniversity;
-    private UniversityActivity.ArticleAdapter articleAdapter;
+    private UniversityFragment.ArticleAdapter articleAdapter;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_university);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        ///////////////////////////////
-        if (Build.VERSION.SDK_INT>=21){
-            Window window = this.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.statusBar));
-        }
+        View rootView = inflater.inflate(R.layout.fragment_pub_home, container, false);
 
-        //Set Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.university_toolbar);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
-        setSupportActionBar(toolbar);
-        getSupportActionBar();
-        setTitle("University");
+        rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_university);
+        rclUniversity.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        //Show back button
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ///////////////////////////////////
-
-        rclUniversity = (RecyclerView)findViewById(R.id.rcl_university);
-        rclUniversity.setLayoutManager(new LinearLayoutManager(this));
-
-        articleAdapter = new UniversityActivity.ArticleAdapter();
+        articleAdapter = new UniversityFragment.ArticleAdapter();
         rclUniversity.setAdapter(articleAdapter);
 
         loadArticlesFromServer();
@@ -75,22 +57,12 @@ public class UniversityActivity extends AppCompatActivity{
             Article[] articles = App.getInstance(this).getArticles();
             articleAdapter.setArticles(articles);
         }*/
+        return rootView;
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 
     private void loadArticlesFromServer(){
         String url = "https://schoolguideproject.000webhostapp.com/json/public_university.php";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -99,12 +71,12 @@ public class UniversityActivity extends AppCompatActivity{
                 // Pass data to adapter for displaying
                 articleAdapter.setArticles(articles);
                 // Save data to Singleton for using later
-                App.getInstance(UniversityActivity.this).setArticles(articles);
+                App.getInstance(getActivity()).setArticles(articles);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(UniversityActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
             }
         });
@@ -163,7 +135,7 @@ public class UniversityActivity extends AppCompatActivity{
                 public void onClick(View view) {
                     int position = getAdapterPosition();
                     Article article = articleAdapter.getArticles()[position];
-                    Intent intent = new Intent(UniversityActivity.this, ArticleDetailActivity.class);
+                    Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
                     /*
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("image_url", article.getImageUrl());
@@ -175,7 +147,7 @@ public class UniversityActivity extends AppCompatActivity{
         }
     }
 
-    class ArticleAdapter extends RecyclerView.Adapter<UniversityActivity.ArticleViewHolder> {
+    class ArticleAdapter extends RecyclerView.Adapter<UniversityFragment.ArticleViewHolder> {
 
         private  Article[] articles;
 
@@ -193,19 +165,19 @@ public class UniversityActivity extends AppCompatActivity{
         }
 
         @Override
-        public UniversityActivity.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(UniversityActivity.this).inflate(R.layout.viewholder_article, parent, false);
-            UniversityActivity.ArticleViewHolder articleViewHolder = new UniversityActivity.ArticleViewHolder(view);
+        public UniversityFragment.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewholder_article, parent, false);
+            UniversityFragment.ArticleViewHolder articleViewHolder = new UniversityFragment.ArticleViewHolder(view);
             return articleViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(UniversityActivity.ArticleViewHolder holder, int position) {
+        public void onBindViewHolder(UniversityFragment.ArticleViewHolder holder, int position) {
             Article article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             // Display image using NetworkImageView
-            ImageLoader imageLoader = App.getInstance(UniversityActivity.this).getImageLoader();
+            ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
             holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);

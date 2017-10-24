@@ -86,7 +86,7 @@ public class ScholarshipActivity extends AppCompatActivity {
 
 
     private void loadArticlesFromServer(){
-        String url = "https://schoolguideproject.000webhostapp.com/schoolguide/scholarship.php";
+        String url = "https://schoolguideproject.000webhostapp.com/json/scholarship.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override

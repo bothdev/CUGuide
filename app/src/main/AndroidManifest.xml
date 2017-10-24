@@ -24,10 +24,11 @@
         <activity android:name=".Activity.EventsActivity" />
         <activity android:name=".Activity.JobActivity" />
         <activity android:name=".Activity.ScholarshipActivity" />
-        <activity android:name=".Activity.SettingActivity"/>
+        <activity android:name=".Activity.SettingActivity" />
         <activity android:name=".Activity.HelpActivity" />
         <activity android:name=".Activity.AboutActivity" />
-        <activity android:name=".Activity.ArticleDetailActivity"/>
+        <activity android:name=".Activity.ArticleDetailActivity" />
+        <activity android:name=".Activity.BookmarkActivity"></activity>
     </application>
 
 </manifest>

@@ -38,18 +38,18 @@
                 android:layout_marginBottom="20dp"
                 android:text="List all universities in Cambodia especially in Phnom Penh. "/>
             <ImageView
-                android:id="@+id/news"
+                android:id="@+id/events"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:layout_below="@id/Udes"
-                android:src="@drawable/ic_newspaper" />
+                android:src="@drawable/ic_events" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/news"
+                android:layout_toRightOf="@id/events"
                 android:layout_below="@id/Udes"
-                android:text="News"
+                android:text="Events"
                 android:layout_marginTop="30dp"
                 android:id="@+id/tnews"
                 android:textColor="@color/colorPrimaryDark" />
@@ -60,7 +60,7 @@
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/Ndes"
                 android:layout_marginBottom="10dp"
-                android:text="List all news in the wold especially in Phnom Penh"/>
+                android:text="List all events in the wold especially in Phnom Penh"/>
             <ImageView
                 android:id="@+id/Job"
                 android:layout_width="60dp"

@@ -4,17 +4,13 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
-                    android:id="@+id/menu_home"
-                    android:title="Home"
-                    android:icon="@drawable/ic_house" />
-                <item
                     android:id="@+id/menu_university"
                     android:title="University"
                     android:icon="@drawable/ic_university_campus" />
                 <item
                     android:id="@+id/menu_events"
                     android:title="Events"
-                    android:icon="@drawable/ic_newspaper" />
+                    android:icon="@drawable/ic_events" />
                 <item
                     android:id="@+id/menu_job"
                     android:title="Job"
@@ -23,6 +19,10 @@
                     android:id="@+id/menu_scholarship"
                     android:title="Scholarship"
                     android:icon="@drawable/ic_scholar" />
+                <item
+                    android:id="@+id/menu_bookmark"
+                    android:title="Bookmark"
+                    android:icon="@drawable/ic_open_book" />
                 <item
                     android:id="@+id/menu_setting"
                     android:title="Setting"

@@ -1,5 +1,6 @@
 package edu.ckcc.schoolguide.Activity;
 
+import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -71,24 +72,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
-        //Home menu start
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        int lastSeletedMenu = sharedPreferences.getInt("last-selected-menu",R.id.menu_home);
-        MenuItem selectedItem = navigationView.getMenu().findItem(lastSeletedMenu);
-        selectedItem.setCheckable(true);
-        onNavigationItemSelected(selectedItem);
-
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         int id = item.getItemId();
-        if (id == R.id.menu_home){
-            setTitle(R.string.app_name);
-        } else if(id == R.id.menu_university){
-            intent = new Intent(this, UniversityActivity.class);
-            startActivity(intent);
+        if(id == R.id.menu_university){
+            onUniversityClick();
         } else if(id == R.id.menu_events){
             intent = new Intent(this, EventsActivity.class);
             startActivity(intent);
@@ -97,6 +88,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
         } else if(id == R.id.menu_scholarship){
             intent = new Intent(this, ScholarshipActivity.class);
+            startActivity(intent);
+        } else if(id == R.id.menu_bookmark){
+            intent = new Intent(this, BookmarkActivity.class);
             startActivity(intent);
         } else if(id == R.id.menu_setting){
             intent = new Intent(this, SettingActivity.class);
@@ -108,13 +102,16 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
         }
-        
-        //Close drawer
-        if(id == R.id.menu_home ){
-            DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }
 
         return true;
+    }
+
+    private void onUniversityClick() {
+        drawerLayout.closeDrawers();
+        UniversityFragment universityFragment = new UniversityFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home_frame, universityFragment);
+        fragmentTransaction.commit();
     }
 }

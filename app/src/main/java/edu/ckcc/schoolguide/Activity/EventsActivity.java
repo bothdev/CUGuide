@@ -90,7 +90,7 @@ public class EventsActivity extends AppCompatActivity {
 
 
     private void loadArticlesFromServer(){
-        String url = "https://schoolguideproject.000webhostapp.com/schoolguide/events.php";
+        String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
