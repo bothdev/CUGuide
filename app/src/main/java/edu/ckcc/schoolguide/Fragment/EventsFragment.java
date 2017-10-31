@@ -1,21 +1,15 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.Fragment;
 
 import android.app.Fragment;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,26 +22,28 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
+import edu.ckcc.schoolguide.Activity.ArticleDetailActivity;
+import edu.ckcc.schoolguide.Activity.Global;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
-public class UniversityFragment extends Fragment{
+public class EventsFragment extends Fragment{
 
-    private RecyclerView rclUniversity;
-    private UniversityFragment.ArticleAdapter articleAdapter;
+    private RecyclerView rclEvents;
+    private EventsFragment.ArticleAdapter articleAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_pub_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_events, container, false);
 
-        rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_university);
-        rclUniversity.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rclEvents = (RecyclerView)rootView.findViewById(R.id.rcl_events);
+        rclEvents.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        articleAdapter = new UniversityFragment.ArticleAdapter();
-        rclUniversity.setAdapter(articleAdapter);
+        articleAdapter = new EventsFragment.ArticleAdapter();
+        rclEvents.setAdapter(articleAdapter);
 
         loadArticlesFromServer();
 
@@ -61,7 +57,7 @@ public class UniversityFragment extends Fragment{
     }
 
     private void loadArticlesFromServer(){
-        String url = "https://schoolguideproject.000webhostapp.com/json/public_university.php";
+        String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -147,7 +143,7 @@ public class UniversityFragment extends Fragment{
         }
     }
 
-    class ArticleAdapter extends RecyclerView.Adapter<UniversityFragment.ArticleViewHolder> {
+    class ArticleAdapter extends RecyclerView.Adapter<EventsFragment.ArticleViewHolder> {
 
         private  Article[] articles;
 
@@ -165,14 +161,14 @@ public class UniversityFragment extends Fragment{
         }
 
         @Override
-        public UniversityFragment.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public EventsFragment.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewholder_article, parent, false);
-            UniversityFragment.ArticleViewHolder articleViewHolder = new UniversityFragment.ArticleViewHolder(view);
+            EventsFragment.ArticleViewHolder articleViewHolder = new EventsFragment.ArticleViewHolder(view);
             return articleViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(UniversityFragment.ArticleViewHolder holder, int position) {
+        public void onBindViewHolder(EventsFragment.ArticleViewHolder holder, int position) {
             Article article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
