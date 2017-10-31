@@ -13,7 +13,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+<<<<<<< HEAD
 import edu.ckcc.schoolguide.Fragment.JobFragment;
+=======
+import edu.ckcc.schoolguide.Fragment.EventsFragment;
+>>>>>>> origin/master
 import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
@@ -61,8 +65,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.menu_university){
             onUniversityClick();
         } else if(id == R.id.menu_events){
-            intent = new Intent(this, EventsActivity.class);
-            startActivity(intent);
+            onEventsClick();
         } else if(id == R.id.menu_job){
             onJobClick();
         } else if(id == R.id.menu_scholarship){
@@ -93,6 +96,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.home_frame, universityFragment);
         fragmentTransaction.commit();
     }
+<<<<<<< HEAD
     private void onJobClick() {
         drawerLayout.closeDrawers();
         JobFragment jobFragment = new JobFragment();
@@ -102,4 +106,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
+=======
+    private void onEventsClick() {
+        drawerLayout.closeDrawers();
+        EventsFragment eventsFragment = new EventsFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home_frame, eventsFragment);
+        fragmentTransaction.commit();
+    }
+>>>>>>> origin/master
 }
