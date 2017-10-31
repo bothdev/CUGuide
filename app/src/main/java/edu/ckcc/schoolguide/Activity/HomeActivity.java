@@ -13,11 +13,11 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-<<<<<<< HEAD
+
 import edu.ckcc.schoolguide.Fragment.JobFragment;
-=======
+
 import edu.ckcc.schoolguide.Fragment.EventsFragment;
->>>>>>> origin/master
+
 import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
@@ -70,6 +70,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             setTitle("Events");
         } else if(id == R.id.menu_job){
             onJobClick();
+            setTitle("Job");
         } else if(id == R.id.menu_scholarship){
             intent = new Intent(this, ScholarshipActivity.class);
             startActivity(intent);
@@ -98,7 +99,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.home_frame, universityFragment);
         fragmentTransaction.commit();
     }
-<<<<<<< HEAD
+
     private void onJobClick() {
         drawerLayout.closeDrawers();
         JobFragment jobFragment = new JobFragment();
@@ -108,7 +109,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
-=======
+
     private void onEventsClick() {
         drawerLayout.closeDrawers();
         EventsFragment eventsFragment = new EventsFragment();
@@ -117,5 +118,5 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.home_frame, eventsFragment);
         fragmentTransaction.commit();
     }
->>>>>>> origin/master
+
 }
