@@ -37,6 +37,7 @@ public class UniversityFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
+
         View rootView = inflater.inflate(R.layout.fragment_pub_home, container, false);
 
         rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_university);
