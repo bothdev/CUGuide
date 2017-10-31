@@ -1,41 +1,21 @@
 package edu.ckcc.schoolguide.Activity;
 
-import android.app.Fragment;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import edu.ckcc.schoolguide.Fragment.JobFragment;
+import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
-import edu.ckcc.schoolguide.Startup.MainActivity;
-import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Article;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -84,8 +64,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             intent = new Intent(this, EventsActivity.class);
             startActivity(intent);
         } else if(id == R.id.menu_job){
-            intent = new Intent(this, JobActivity.class);
-            startActivity(intent);
+            onJobClick();
         } else if(id == R.id.menu_scholarship){
             intent = new Intent(this, ScholarshipActivity.class);
             startActivity(intent);
@@ -114,4 +93,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.home_frame, universityFragment);
         fragmentTransaction.commit();
     }
+    private void onJobClick() {
+        drawerLayout.closeDrawers();
+        JobFragment jobFragment = new JobFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home_frame, jobFragment);
+        fragmentTransaction.commit();
+    }
+
 }
