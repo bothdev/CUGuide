@@ -64,8 +64,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if(id == R.id.menu_university){
             onUniversityClick();
+            setTitle("University");
         } else if(id == R.id.menu_events){
             onEventsClick();
+            setTitle("Events");
         } else if(id == R.id.menu_job){
             onJobClick();
         } else if(id == R.id.menu_scholarship){
