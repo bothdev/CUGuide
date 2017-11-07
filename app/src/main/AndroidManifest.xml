@@ -3,6 +3,7 @@
     package="edu.ckcc.schoolguide">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,6 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.geo.API_KEY"
+            android:value="@string/map"/>
+
         <activity android:name=".Startup.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
