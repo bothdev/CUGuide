@@ -1,14 +1,17 @@
 # SchoolGuideProject
 
 # Members:
-  - Chhorn Sockhym
-  - Chhoeurn Vorreakboth
+  - Chhorn Sockhym -- Project manager
+  - Chhoeurn Vorreakboth -- Programmer
+  - Leu Kongsun -- Programmer
+  - Chhum Chanchhordeth -- Web developer
 
 # Project:
   - School Guide
 
 # Description:
   - help student to find University, Events, Job, and Scholarship.
+  - help student to choose best university for what they want to learn.
 
 # Features:
   - List and Detail of University
