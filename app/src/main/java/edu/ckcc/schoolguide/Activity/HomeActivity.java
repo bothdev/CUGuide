@@ -18,6 +18,7 @@ import edu.ckcc.schoolguide.Fragment.JobFragment;
 
 import edu.ckcc.schoolguide.Fragment.EventsFragment;
 
+import edu.ckcc.schoolguide.Fragment.ScholarshipFragment;
 import edu.ckcc.schoolguide.Fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
@@ -72,8 +73,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             onJobClick();
             setTitle("Job");
         } else if(id == R.id.menu_scholarship){
-            intent = new Intent(this, ScholarshipActivity.class);
-            startActivity(intent);
+            onScholarshipClick();
+            setTitle("Scholarship");
         } else if(id == R.id.menu_bookmark){
             intent = new Intent(this, BookmarkActivity.class);
             startActivity(intent);
@@ -116,6 +117,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         android.app.FragmentManager fragmentManager = getFragmentManager();
         android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.home_frame, eventsFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void onScholarshipClick() {
+        drawerLayout.closeDrawers();
+        ScholarshipFragment scholarshipFragment = new ScholarshipFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home_frame, scholarshipFragment);
         fragmentTransaction.commit();
     }
 
