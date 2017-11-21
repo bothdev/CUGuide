@@ -3,6 +3,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="google_map_api_key">AIzaSyAUM8y6tECy-7IKHwU63uEvspiLb-y22EU</string>
+    <string name="facebook_app_id">970641659758614</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
