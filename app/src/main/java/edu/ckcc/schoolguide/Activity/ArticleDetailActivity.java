@@ -42,6 +42,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         ///////////////////////////////////
 
         Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
+
     }
 
     @Override

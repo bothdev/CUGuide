@@ -132,10 +132,8 @@ public class EventsFragment extends Fragment{
                     int position = getAdapterPosition();
                     Article article = articleAdapter.getArticles()[position];
                     Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                    /*
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("image_url", article.getImageUrl());
-                    */
                     Global.selectedArticle = article;
                     startActivity(intent);
                 }
