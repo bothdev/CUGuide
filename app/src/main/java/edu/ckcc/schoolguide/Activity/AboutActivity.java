@@ -28,8 +28,10 @@ import edu.ckcc.schoolguide.R;
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     MapView mapView;
     GoogleMap map;
-    private double longtitue = 11.5728299;
-    private double langtitute = 104.8863281;
+
+    private double latitude = 11.5623773;
+    private double longitude = 104.874651;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +60,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
-                Log.d("ckcc" , "onMapReady");
+                Log.d("map" , "onMapReady");
                 map = googleMap;
                 addMarker();
             }
@@ -107,7 +109,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.title("SchoolGuide");
         markerOptions.snippet("Our Location");
-        LatLng latlng = new LatLng(longtitue, langtitute);
+        LatLng latlng = new LatLng(latitude,longitude);
         markerOptions.position(latlng);
         markerOptions.draggable(false);
         map.addMarker(markerOptions);
