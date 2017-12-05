@@ -23,7 +23,6 @@ public class LoginActivity extends Activity {
 
     private final String APP_USERNAME = "schoolguide";
     private final String APP_PASSWORD = "12345678";
-    CallbackManager callbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
