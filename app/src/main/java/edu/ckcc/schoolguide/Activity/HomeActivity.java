@@ -1,5 +1,9 @@
 package edu.ckcc.schoolguide.Activity;
 
+import android.app.Fragment;
+import android.app.FragmentContainer;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -13,6 +17,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import edu.ckcc.schoolguide.Fragment.HomeFragment;
 import edu.ckcc.schoolguide.Fragment.JobFragment;
 import edu.ckcc.schoolguide.Fragment.EventsFragment;
 import edu.ckcc.schoolguide.Fragment.ScholarshipFragment;
@@ -42,7 +47,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("School Guide");
+        setTitle("Discussions");
 
         //Set Onclick Navigation Drawer
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -60,7 +65,10 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         int id = item.getItemId();
-        if(id == R.id.menu_university){
+        if(id == R.id.menu_home){
+            onHomeClick();
+            setTitle("Discussions");
+        } else if(id == R.id.menu_university){
             onUniversityClick();
             setTitle("University");
         } else if(id == R.id.menu_events){
@@ -71,6 +79,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             setTitle("Job");
         } else if(id == R.id.menu_scholarship){
             onScholarshipClick();
+            setTitle("Scholarship");
         } else if(id == R.id.menu_bookmark){
             intent = new Intent(this, BookmarkActivity.class);
             startActivity(intent);
@@ -86,6 +95,14 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         }
 
         return true;
+    }
+    private void onHomeClick(){
+        drawerLayout.closeDrawers();
+        HomeFragment homeFragment = new HomeFragment();
+        android.app.FragmentManager fragmentManager = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.home_frame, homeFragment);
+        fragmentTransaction.commit();
     }
 
     private void onUniversityClick() {

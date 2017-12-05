@@ -113,7 +113,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         markerOptions.position(latlng);
         markerOptions.draggable(false);
         map.addMarker(markerOptions);
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 15);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 50);
         map.animateCamera(cameraUpdate);
     }
 }
