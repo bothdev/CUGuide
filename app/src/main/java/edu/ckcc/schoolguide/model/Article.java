@@ -15,6 +15,9 @@ public class Article {
     @SerializedName("image")
     private String imageUrl;
 
+    @SerializedName("photo")
+    private String photoUrl;
+
     @SerializedName("description")
     private String description;
 
@@ -52,11 +55,13 @@ public class Article {
         this.imageUrl = imageUrl;
     }
 
+    public String getPhotoUrl(){ return photoUrl; }
+
+    public void setPhotoUrl(){ this.photoUrl = photoUrl; }
+
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 }

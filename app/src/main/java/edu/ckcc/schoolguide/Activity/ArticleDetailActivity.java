@@ -1,5 +1,6 @@
 package edu.ckcc.schoolguide.Activity;
 
+import android.net.Network;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,12 +10,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+
 import edu.ckcc.schoolguide.R;
+import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
 public class ArticleDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +50,17 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         ///////////////////////////////////
 
         Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
+        TextView textView = (TextView) findViewById(R.id.detail_uni);
+        textView.setText(article.getDescription());
 
+        imageLoader = App.getInstance(ArticleDetailActivity.this).getImageLoader();
+        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni);
+
+        networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);
+
+        if(article.getPhotoUrl()==null) {
+            networkImageView.setImageUrl(article.getImageUrl(),imageLoader);
+        }
     }
 
     @Override
