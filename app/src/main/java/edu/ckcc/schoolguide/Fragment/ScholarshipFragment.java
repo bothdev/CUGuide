@@ -132,10 +132,8 @@ public class ScholarshipFragment extends Fragment{
                     int position = getAdapterPosition();
                     Article article = articleAdapter.getArticles()[position];
                     Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                    /*
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("image_url", article.getImageUrl());
-                    */
                     Global.selectedArticle = article;
                     startActivity(intent);
                 }
@@ -176,6 +174,7 @@ public class ScholarshipFragment extends Fragment{
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
             holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
+            holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
         }
 

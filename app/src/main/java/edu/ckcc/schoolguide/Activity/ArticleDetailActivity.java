@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +56,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
 
         imageLoader = App.getInstance(ArticleDetailActivity.this).getImageLoader();
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni);
-
+        networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);
 
         if(article.getPhotoUrl()==null) {

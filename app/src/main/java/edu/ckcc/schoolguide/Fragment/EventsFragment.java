@@ -174,6 +174,7 @@ public class EventsFragment extends Fragment{
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
             holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
+            holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
         }
 
