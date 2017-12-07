@@ -45,6 +45,7 @@ public class EventsFragment extends Fragment{
         articleAdapter = new EventsFragment.ArticleAdapter();
         rclEvents.setAdapter(articleAdapter);
 
+
         loadArticlesFromServer();
 
         /*if(App.getInstance(this).getArticles() == null){

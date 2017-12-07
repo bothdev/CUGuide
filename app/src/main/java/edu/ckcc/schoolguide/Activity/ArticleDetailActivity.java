@@ -1,9 +1,9 @@
 package edu.ckcc.schoolguide.Activity;
 
 import android.net.Network;
+import android.support.annotation.NonNull;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class UniversityFragment extends Fragment{
 
     private RecyclerView rclUniversity;
     private UniversityFragment.ArticleAdapter articleAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -42,6 +44,8 @@ public class UniversityFragment extends Fragment{
 
         rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_university);
         rclUniversity.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
 
         articleAdapter = new UniversityFragment.ArticleAdapter();
         rclUniversity.setAdapter(articleAdapter);
@@ -58,25 +62,36 @@ public class UniversityFragment extends Fragment{
     }
 
     private void loadArticlesFromServer(){
-        String url = "https://schoolguideproject.000webhostapp.com/json/public_university.php";
-        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Gson gson = new Gson();
-                Article[] articles = gson.fromJson(response, Article[].class);
-                // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
-                // Save data to Singleton for using later
-                App.getInstance(getActivity()).setArticles(articles);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("School Guide", "Load article error: " + error.getMessage());
-            }
-        });
+        try {
+            swipeRefreshLayout.setRefreshing(true);
+            String url = "https://schoolguideproject.000webhostapp.com/json/public_university.php";
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+
+                    Gson gson = new Gson();
+                    Article[] articles = gson.fromJson(response, Article[].class);
+
+                    // Pass data to adapter for displaying
+                    articleAdapter.setArticles(articles);
+                    // Save data to Singleton for using later
+                    App.getInstance(getActivity()).setArticles(articles);
+                    swipeRefreshLayout.setRefreshing(false);
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    swipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
+                    Log.d("School Guide", "Load article error: " + error.getMessage());
+                }
+            });
+            requestQueue.add(articlesRequest);
+        }catch (Exception e)
+        {}
+
         /*
         JsonArrayRequest articlesRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
             @Override
@@ -110,7 +125,7 @@ public class UniversityFragment extends Fragment{
             }
         });
         */
-        requestQueue.add(articlesRequest);
+
     }
 
     // Article Adapter
