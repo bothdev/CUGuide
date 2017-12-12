@@ -1,4 +1,4 @@
-# SchoolGuideProject
+# School Guide -> CU Guide - Stand for Cambodia University Guide
 http://schoolguideproject.000webhostapp.com/
 <!--
 # Members:
