@@ -29,7 +29,7 @@ import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
-public class UniversityFragment extends Fragment{
+public class UniversityFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private RecyclerView rclUniversity;
     private UniversityFragment.ArticleAdapter articleAdapter;
@@ -46,6 +46,7 @@ public class UniversityFragment extends Fragment{
         rclUniversity.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         articleAdapter = new UniversityFragment.ArticleAdapter();
         rclUniversity.setAdapter(articleAdapter);
@@ -125,6 +126,12 @@ public class UniversityFragment extends Fragment{
             }
         });
         */
+
+    }
+
+    @Override
+    public void onRefresh() {
+        loadArticlesFromServer();
 
     }
 
