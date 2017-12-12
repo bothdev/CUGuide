@@ -1,4 +1,4 @@
-# CU Guide - Stand for Cambodia University Guide
+# School Guide
 http://schoolguideproject.000webhostapp.com/
 <!--
 # Members:
@@ -9,7 +9,7 @@ http://schoolguideproject.000webhostapp.com/
 -->
 
 # Project:
-  - CU Guide
+  - School Guide
 
 # Description:
   - help student to find University, Events, Job, and Scholarship.
