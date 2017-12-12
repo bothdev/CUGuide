@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -32,6 +33,7 @@ public class ScholarshipFragment extends Fragment{
 
     private RecyclerView rclScholarship;
     private ScholarshipFragment.ArticleAdapter articleAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -41,6 +43,8 @@ public class ScholarshipFragment extends Fragment{
 
         rclScholarship = (RecyclerView)rootView.findViewById(R.id.rcl_events);
         rclScholarship.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
 
         articleAdapter = new ScholarshipFragment.ArticleAdapter();
         rclScholarship.setAdapter(articleAdapter);
@@ -57,6 +61,7 @@ public class ScholarshipFragment extends Fragment{
     }
 
     private void loadArticlesFromServer(){
+
         String url = "https://schoolguideproject.000webhostapp.com/json/scholarship.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
@@ -68,10 +73,12 @@ public class ScholarshipFragment extends Fragment{
                 articleAdapter.setArticles(articles);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setArticles(articles);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
                 Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
             }
@@ -111,6 +118,12 @@ public class ScholarshipFragment extends Fragment{
         */
         requestQueue.add(articlesRequest);
     }
+
+//    @Override
+//    public void onRefresh() {
+//        loadArticlesFromServer();
+//
+//    }
 
     // Article Adapter
     class ArticleViewHolder extends RecyclerView.ViewHolder {
@@ -173,7 +186,7 @@ public class ScholarshipFragment extends Fragment{
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
-            holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
+            holder.imgArticle.setErrorImageResId(R.drawable.schoolarship);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
         }

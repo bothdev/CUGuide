@@ -183,7 +183,7 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
         @Override
         public UniversityFragment.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewholder_article, parent, false);
+            View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewholder_university, parent, false);
             UniversityFragment.ArticleViewHolder articleViewHolder = new UniversityFragment.ArticleViewHolder(view);
             return articleViewHolder;
         }

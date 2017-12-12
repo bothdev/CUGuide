@@ -173,7 +173,7 @@ public class JobFragment extends Fragment{
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
-            holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
+            holder.imgArticle.setErrorImageResId(R.drawable.job);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
         }
