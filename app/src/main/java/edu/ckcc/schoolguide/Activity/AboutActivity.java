@@ -26,11 +26,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import edu.ckcc.schoolguide.R;
  
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    MapView mapView;
-    GoogleMap map;
+    //MapView mapView;
+    //GoogleMap map;
 
-    private double latitude = 11.568292;
-    private double longitude = 104.890731;
+    //private double latitude = 11.568292;
+    //private double longitude = 104.890731;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
 		//Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		///////////////////////////////////
-        mapView = (MapView) findViewById(R.id.map);
+        /*mapView = (MapView) findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -65,7 +65,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
                 //addMarker();
             }
         }
-        );
+        );*/
     }
 
     @Override
