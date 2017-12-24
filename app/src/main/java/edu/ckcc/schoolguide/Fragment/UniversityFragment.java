@@ -1,6 +1,7 @@
 package edu.ckcc.schoolguide.Fragment;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,14 +26,15 @@ import com.google.gson.Gson;
 
 import edu.ckcc.schoolguide.Activity.ArticleDetailActivity;
 import edu.ckcc.schoolguide.Activity.Global;
+import edu.ckcc.schoolguide.Activity.UniversityDetailActivity;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Article;
+import edu.ckcc.schoolguide.model.University;
 
 public class UniversityFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private RecyclerView rclUniversity;
-    private UniversityFragment.ArticleAdapter articleAdapter;
+    private UniversityFragment.UniversityAdapter universityAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
@@ -40,170 +42,134 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
 
-        View rootView = inflater.inflate(R.layout.fragment_pub_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-        rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_university);
+        rclUniversity = (RecyclerView)rootView.findViewById(R.id.rcl_view);
         rclUniversity.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        articleAdapter = new UniversityFragment.ArticleAdapter();
-        rclUniversity.setAdapter(articleAdapter);
+        universityAdapter = new UniversityFragment.UniversityAdapter();
+        rclUniversity.setAdapter(universityAdapter);
 
-        loadArticlesFromServer();
-
-        /*if(App.getInstance(this).getArticles() == null){
-            loadArticlesFromServer();
-        }else{
-            Article[] articles = App.getInstance(this).getArticles();
-            articleAdapter.setArticles(articles);
-        }*/
+        loadUniversitiesFromServer();
         return rootView;
     }
 
-    private void loadArticlesFromServer(){
-        try {
-            swipeRefreshLayout.setRefreshing(true);
-            String url = "https://schoolguideproject.000webhostapp.com/json/university.php";
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-            StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-
-                    Gson gson = new Gson();
-                    Article[] articles = gson.fromJson(response, Article[].class);
-
-                    // Pass data to adapter for displaying
-                    articleAdapter.setArticles(articles);
-                    // Save data to Singleton for using later
-                    App.getInstance(getActivity()).setArticles(articles);
-                    swipeRefreshLayout.setRefreshing(false);
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    swipeRefreshLayout.setRefreshing(false);
-                    Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                    Log.d("School Guide", "Load article error: " + error.getMessage());
-                }
-            });
-            requestQueue.add(articlesRequest);
-        }catch (Exception e)
-        {}
-
-        /*
-        JsonArrayRequest articlesRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
+    private void loadUniversitiesFromServer(){
+        swipeRefreshLayout.setRefreshing(true);
+        String url = "https://schoolguideproject.000webhostapp.com/json/university.php";
+        RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        StringRequest universitiesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONArray response) {
-                Log.d("ckcc", "Load data success");
-                Article[] articles = new Article[response.length()];
-                for(int i=0; i<response.length(); i++){
-                    try {
-                        JSONObject articleJson = response.getJSONObject(i);
-                        int id = articleJson.getInt("_id");
-                        String title = articleJson.getString("_title");
-                        String imageUrl = articleJson.getString("_image_url");
-                        Article article = new Article(title, 0, imageUrl);
-                        articles[i] = article;
+            public void onResponse(String response) {
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
+                Gson gson = new Gson();
+                University[] universities = gson.fromJson(response, University[].class);
+
                 // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
+                universityAdapter.setUniversities(universities);
                 // Save data to Singleton for using later
-                App.getInstance(NewsActivity.this).setArticles(articles);
+                App.getInstance(getActivity()).setUniversities(universities);
+                swipeRefreshLayout.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewsActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("ckcc", "Load article error: " + error.getMessage());
+                swipeRefreshLayout.setRefreshing(false);
+                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
+                Log.d("School Guide", "Load article error: " + error.getMessage());
             }
         });
-        */
 
+        requestQueue.add(universitiesRequest);
     }
 
     @Override
     public void onRefresh() {
-        loadArticlesFromServer();
-
+        loadUniversitiesFromServer();
     }
 
-    // Article Adapter
-    class ArticleViewHolder extends RecyclerView.ViewHolder {
+    // University Adapter
+    class UniversityViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtTitle;
-        TextView txtDes;
+        TextView txtTel;
+        TextView txtEmail;
+        TextView txtAddress;
         NetworkImageView imgArticle;
 
-        public ArticleViewHolder(View itemView) {
+        public UniversityViewHolder(View itemView) {
             super(itemView);
 
             txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
-            txtDes = (TextView)itemView.findViewById(R.id.txt_des);
+            txtTel = (TextView)itemView.findViewById(R.id.txt_number);
+            txtEmail = (TextView) itemView.findViewById(R.id.txt_Email_address);
+            txtAddress = (TextView) itemView.findViewById(R.id.txt_address);
             imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Article article = articleAdapter.getArticles()[position];
-                    Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
-                    intent.putExtra("title", article.getTitle());
-                    intent.putExtra("image_url", article.getImageUrl());
-                    Global.selectedArticle = article;
+                    University university = universityAdapter.getUniversities()[position];
+                    Intent intent = new Intent(getActivity(), UniversityDetailActivity.class);
+                    intent.putExtra("title", university.getTitle());
+                    intent.putExtra("imageUrl", university.getImageUrl());
+                    intent.putExtra("photoUrl", university.getPhotoUrl());
+                    intent.putExtra("description", university.getDescription());
+                    intent.putExtra("tel", university.getTel());
+                    intent.putExtra("email", university.getEmail());
+                    intent.putExtra("address", university.getAddress());
+                    Global.selectedUniversity = university;
                     startActivity(intent);
                 }
             });
         }
     }
 
-    class ArticleAdapter extends RecyclerView.Adapter<UniversityFragment.ArticleViewHolder> {
+    class UniversityAdapter extends RecyclerView.Adapter<UniversityFragment.UniversityViewHolder> {
 
-        private  Article[] articles;
+        private  University[] universities;
 
-        public ArticleAdapter(){
-            articles = new Article[0];
+        public UniversityAdapter(){
+            universities = new University[0];
         }
 
-        public void setArticles(Article[] articles) {
-            this.articles = articles;
+        public void setUniversities(University[] universities) {
+            this.universities = universities;
             notifyDataSetChanged();
         }
 
-        public Article[] getArticles() {
-            return articles;
+        public University[] getUniversities() {
+            return universities;
         }
 
         @Override
-        public UniversityFragment.ArticleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        public UniversityFragment.UniversityViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.viewholder_university, parent, false);
-            UniversityFragment.ArticleViewHolder articleViewHolder = new UniversityFragment.ArticleViewHolder(view);
-            return articleViewHolder;
+            UniversityFragment.UniversityViewHolder universityViewHolder = new UniversityFragment.UniversityViewHolder(view);
+            return universityViewHolder;
         }
 
         @Override
-        public void onBindViewHolder(UniversityFragment.ArticleViewHolder holder, int position) {
-            Article article = articles[position];
-            holder.txtTitle.setText(article.getTitle());
-            holder.txtDes.setText(article.getDescription());
+        public void onBindViewHolder(UniversityFragment.UniversityViewHolder holder, int position) {
+            University university = universities[position];
+            holder.txtTitle.setText(university.getTitle());
+            holder.txtTel.setText(university.getTel());
+            holder.txtEmail.setText(university.getEmail());
+            holder.txtAddress.setText(university.getAddress());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
             holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
-            holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
+            holder.imgArticle.setImageUrl(university.getImageUrl(), imageLoader);
         }
 
         @Override
-        public int getItemCount() {
-            return articles.length;
-        }
+        public int getItemCount() { return universities.length; }
     }
 }

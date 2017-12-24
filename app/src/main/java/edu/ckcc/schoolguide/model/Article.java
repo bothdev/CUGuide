@@ -2,11 +2,6 @@ package edu.ckcc.schoolguide.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * CKCCApp
- * Created by leapkh on 12/9/17.
- */
-
 public class Article {
 
     @SerializedName("title")

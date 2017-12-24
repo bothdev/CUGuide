@@ -29,8 +29,8 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     MapView mapView;
     GoogleMap map;
 
-    private double latitude = 11.5623773;
-    private double longitude = 104.874651;
+    private double latitude = 11.568292;
+    private double longitude = 104.890731;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         setSupportActionBar(toolbar);
         getSupportActionBar();
         setTitle("About Us");
-		
+
 		//Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		///////////////////////////////////
@@ -62,34 +62,10 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
             public void onMapReady(GoogleMap googleMap) {
                 Log.d("map" , "onMapReady");
                 map = googleMap;
-                addMarker();
+                //addMarker();
             }
         }
         );
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mapView.onStart();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mapView.onStop();
     }
 
     @Override
@@ -105,15 +81,14 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         return super.onOptionsItemSelected(item);
     }
 
-    private void addMarker(){
+    /*private void addMarker(){
         MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.title("SchoolGuide");
-        markerOptions.snippet("Our Location");
+        markerOptions.title("SchoolGuide").snippet("Our Location");
         LatLng latlng = new LatLng(latitude,longitude);
         markerOptions.position(latlng);
         markerOptions.draggable(false);
         map.addMarker(markerOptions);
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 50);
         map.animateCamera(cameraUpdate);
-    }
+    }*/
 }

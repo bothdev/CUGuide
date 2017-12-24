@@ -1,9 +1,5 @@
 package edu.ckcc.schoolguide.Activity;
 
-import android.app.Fragment;
-import android.app.FragmentContainer;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -47,7 +43,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("Discussions");
 
         //Set Onclick Navigation Drawer
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -67,7 +62,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         if(id == R.id.menu_home){
             onHomeClick();
-            setTitle("Discussions");
+            setTitle("Home");
         } else if(id == R.id.menu_university){
             onUniversityClick();
             setTitle("University");

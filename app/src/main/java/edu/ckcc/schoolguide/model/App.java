@@ -1,16 +1,12 @@
 package edu.ckcc.schoolguide.model;
 
-import android.content.Context;
+import android.app.Activity;
 import android.graphics.Bitmap;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
-
-/**
- * Created by Computer on 10/16/2017.
- */
 
 public class App {
 
@@ -24,13 +20,14 @@ public class App {
 
     // Data
     private Article[] articles;
+    private University[] universities;
 
     // Private constructor
     private App(){
 
     }
 
-    public static App getInstance(Context context) {
+    public static App getInstance(Activity context) {
         if(instance == null) {
             instance = new App();
             instance.queue = Volley.newRequestQueue(context);
@@ -62,7 +59,12 @@ public class App {
         return articles;
     }
 
+    public University[] getUniversities() { return universities; }
+
     public void setArticles(Article[] articles) {
         this.articles = articles;
     }
+
+    public void setUniversities(University[] universities) { this.universities = universities; }
+
 }

@@ -77,39 +77,7 @@ public class EventsFragment extends Fragment{
                 Log.d("School Guide", "Load article error: " + error.getMessage());
             }
         });
-        /*
-        JsonArrayRequest articlesRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d("ckcc", "Load data success");
-                Article[] articles = new Article[response.length()];
-                for(int i=0; i<response.length(); i++){
-                    try {
-                        JSONObject articleJson = response.getJSONObject(i);
-                        int id = articleJson.getInt("_id");
-                        String title = articleJson.getString("_title");
-                        String imageUrl = articleJson.getString("_image_url");
-                        Article article = new Article(title, 0, imageUrl);
-                        articles[i] = article;
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
-                // Save data to Singleton for using later
-                App.getInstance(NewsActivity.this).setArticles(articles);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewsActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("ckcc", "Load article error: " + error.getMessage());
-            }
-        });
-        */
         requestQueue.add(articlesRequest);
     }
 

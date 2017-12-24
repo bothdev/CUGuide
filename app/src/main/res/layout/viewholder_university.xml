@@ -3,39 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="130dp"
     android:padding="5dp">
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/img_article"
-        android:layout_width="100dp"
+        android:layout_width="130dp"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:padding="5dp" />
+        android:padding="5dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:maxLines="1"
-        android:textStyle="bold"
-        android:layout_toRightOf="@id/img_article"
-        android:padding="5dp"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_toRightOf="@id/img_article"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="Title"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/txt_des"
-        android:layout_width="match_parent"
+        android:id="@+id/txt_tel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_title"
         android:layout_toRightOf="@id/img_article"
-        android:layout_below="@id/txt_title"
+        android:maxLines="1"
         android:padding="5dp"
-        android:text="Description"
-        android:maxLines="2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:text="Tel:" />
+    <TextView
+        android:id="@+id/txt_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_title"
+        android:layout_toRightOf="@id/txt_tel"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="Phone Number" />
+    <TextView
+        android:id="@+id/txt_Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_tel"
+        android:layout_toRightOf="@id/img_article"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="Email:" />
+    <TextView
+        android:id="@+id/txt_Email_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_tel"
+        android:layout_toRightOf="@id/txt_Email"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="Email Address"/>
 
+    <TextView
+        android:id="@+id/txt_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_Email"
+        android:layout_toEndOf="@+id/img_article"
+        android:layout_toRightOf="@+id/img_article"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:text="Address" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,19 +29,23 @@ import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
 
-public class JobFragment extends Fragment{
+public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private RecyclerView rclJob;
     private JobFragment.ArticleAdapter articleAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_pub_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-        rclJob = (RecyclerView)rootView.findViewById(R.id.rcl_university);
+        rclJob = (RecyclerView)rootView.findViewById(R.id.rcl_view);
         rclJob.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
         articleAdapter = new JobFragment.ArticleAdapter();
         rclJob.setAdapter(articleAdapter);
@@ -57,6 +62,7 @@ public class JobFragment extends Fragment{
     }
 
     private void loadArticlesFromServer(){
+        swipeRefreshLayout.setRefreshing(true);
         String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
@@ -68,48 +74,24 @@ public class JobFragment extends Fragment{
                 articleAdapter.setArticles(articles);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setArticles(articles);
+                swipeRefreshLayout.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                swipeRefreshLayout.setRefreshing(false);
                 Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
-            }
-        });
-        /*
-        JsonArrayRequest articlesRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                Log.d("ckcc", "Load data success");
-                Article[] articles = new Article[response.length()];
-                for(int i=0; i<response.length(); i++){
-                    try {
-                        JSONObject articleJson = response.getJSONObject(i);
-                        int id = articleJson.getInt("_id");
-                        String title = articleJson.getString("_title");
-                        String imageUrl = articleJson.getString("_image_url");
-                        Article article = new Article(title, 0, imageUrl);
-                        articles[i] = article;
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
-                // Save data to Singleton for using later
-                App.getInstance(NewsActivity.this).setArticles(articles);
 
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(NewsActivity.this, "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("ckcc", "Load article error: " + error.getMessage());
-            }
         });
-        */
+
         requestQueue.add(articlesRequest);
+    }
+
+    @Override
+    public void onRefresh() {
+        loadArticlesFromServer();
     }
 
     // Article Adapter
