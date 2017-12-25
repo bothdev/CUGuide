@@ -8,10 +8,10 @@ public class University {
     private String title;
 
     @SerializedName("image")
-    private String imageUrl;
+    private String image;
 
     @SerializedName("photo")
-    private String photoUrl;
+    private String photo;
 
     @SerializedName("description")
     private String description;
@@ -25,36 +25,28 @@ public class University {
     @SerializedName("address")
     private String address;
 
-    public University(String title, String imageUrl, String photoUrl, String description, String tel, String email, String address) {
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.photoUrl = photoUrl;
-        this.description = description;
-        this.tel = tel;
-        this.email = email;
-        this.address = address;
+    public String getTitle() {
+        return title;
     }
-
-    public String getTitle() { return title; }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getImage() {
+        return image;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
+    public String getPhoto() {
+        return photo;
     }
 
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public String getDescription() {

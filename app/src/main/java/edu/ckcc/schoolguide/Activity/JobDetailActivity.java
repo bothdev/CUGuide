@@ -1,26 +1,33 @@
 package edu.ckcc.schoolguide.Activity;
 
-import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.style.BackgroundColorSpan;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
+import edu.ckcc.schoolguide.model.App;
+import edu.ckcc.schoolguide.model.Event;
+import edu.ckcc.schoolguide.model.Job;
 
-public class BookmarkActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class JobDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
+    private ImageLoader imageLoader;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Job article = Global.selectedJob;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bookmark);
+        setContentView(R.layout.activity_article_detail);
 
         ///////////////////////////////
         if (Build.VERSION.SDK_INT>=21){
@@ -31,15 +38,28 @@ public class BookmarkActivity extends AppCompatActivity implements NavigationVie
         }
 
         //Set Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.bookmark_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_article_toolbar);
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("Bookmark");
+        setTitle("Job");
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
+
+        Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
+        TextView textView = (TextView) findViewById(R.id.detail_article);
+        textView.setText(article.getDescription());
+
+        imageLoader = App.getInstance(JobDetailActivity.this).getImageLoader();
+        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
+        networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
+        networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);
+
+        if(article.getPhotoUrl()==null) {
+            networkImageView.setImageUrl(article.getImageUrl(),imageLoader);
+        }
     }
 
     @Override
@@ -49,7 +69,6 @@ public class BookmarkActivity extends AppCompatActivity implements NavigationVie
         }
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);

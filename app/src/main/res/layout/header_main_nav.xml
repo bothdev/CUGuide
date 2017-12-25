@@ -4,7 +4,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="160dp"
-    android:background="@drawable/share"
+    android:background="@drawable/header"
     android:gravity="start"
     android:orientation="vertical"
     android:padding="15dp"

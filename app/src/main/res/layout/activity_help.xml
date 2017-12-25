@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/bk">
     <android.support.v7.widget.Toolbar
         android:id="@+id/help_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/statusBar"
+        android:background="@color/colorPrimary"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
     </android.support.v7.widget.Toolbar>
     <ScrollView
@@ -28,7 +29,7 @@
                 android:layout_toRightOf="@id/uni"
                 android:text="University"
                 android:id="@+id/tuniver"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -36,14 +37,15 @@
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/Udes"
                 android:layout_marginBottom="20dp"
-                android:text="List all universities in Cambodia especially in Phnom Penh. "/>
+                android:text="List all universities in Cambodia especially in Phnom Penh."
+                android:textColor="@android:color/white"/>
             <ImageView
                 android:id="@+id/events"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_margin="20dp"
                 android:layout_below="@id/Udes"
-                android:src="@drawable/ic_events" />
+                android:src="@drawable/ic_events"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -52,7 +54,7 @@
                 android:text="Events"
                 android:layout_marginTop="30dp"
                 android:id="@+id/tnews"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -60,7 +62,8 @@
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/Ndes"
                 android:layout_marginBottom="10dp"
-                android:text="List all events in the wold especially in Phnom Penh"/>
+                android:text="List all events in the wold especially in Phnom Penh"
+                android:textColor="@android:color/white"/>
             <ImageView
                 android:id="@+id/Job"
                 android:layout_width="60dp"
@@ -77,7 +80,7 @@
                 android:text="Job"
                 android:layout_marginTop="60dp"
                 android:id="@+id/tjob"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +88,8 @@
                 android:layout_toRightOf="@id/uni"
                 android:layout_marginBottom="20dp"
                 android:id="@+id/Jdes"
-                android:text="List all jobs in Cambodia especially in Phnom Penh."/>
+                android:text="List all jobs in Cambodia especially in Phnom Penh."
+                android:textColor="@android:color/white"/>
             <ImageView
                 android:id="@+id/scholar"
                 android:layout_width="60dp"
@@ -101,7 +105,7 @@
                 android:text="Scholarship"
                 android:layout_marginTop="25dp"
                 android:id="@+id/tscholar"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,15 +113,15 @@
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/sdes"
                 android:layout_marginBottom="20dp"
-                android:text="List all scholarship."/>
+                android:text="List all scholarship."
+                android:textColor="@android:color/white"/>
             <ImageView
                 android:id="@+id/bookmark"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_below="@id/sdes"
                 android:layout_margin="20dp"
-                android:src="@drawable/ic_open_book"
-                android:layout_marginTop="0dp"/>
+                android:src="@drawable/ic_open_book" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,7 +130,7 @@
                 android:text="Bookmark"
                 android:layout_marginTop="25dp"
                 android:id="@+id/tbookmark"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +138,8 @@
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/bmdes"
                 android:layout_marginBottom="20dp"
-                android:text="Saved Title on your bookmark"/>
+                android:text="Saved Title on your bookmark"
+                android:textColor="@android:color/white"/>
             <ImageView
                 android:id="@+id/setting"
                 android:layout_width="60dp"
@@ -150,14 +155,15 @@
                 android:text="Setting"
                 android:layout_marginTop="30dp"
                 android:id="@+id/tsetting"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@android:color/white" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tsetting"
                 android:layout_toRightOf="@id/uni"
                 android:id="@+id/setdes"
-                android:text="Change color or change style of App "/>
+                android:text="Change color or change style of App "
+                android:textColor="@android:color/white"/>
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

@@ -21,6 +21,9 @@ public class App {
     // Data
     private Article[] articles;
     private University[] universities;
+    private Event[] events;
+    private Job[] jobs;
+    private Scholarship[] scholarships;
 
     // Private constructor
     private App(){
@@ -61,10 +64,21 @@ public class App {
 
     public University[] getUniversities() { return universities; }
 
+    public Event[] getEvents() { return events; }
+
+    public Job[] getJobs() { return jobs; }
+
+    public Scholarship[] getScholarship() { return scholarships; }
+
     public void setArticles(Article[] articles) {
         this.articles = articles;
     }
 
     public void setUniversities(University[] universities) { this.universities = universities; }
 
+    public void setEvents(Event[] events) { this.events = events; }
+
+    public void setJobs(Job[] jobs) { this.jobs = jobs; }
+
+    public void setScholarships(Scholarship[] scholarships) { this.scholarships = scholarships; }
 }

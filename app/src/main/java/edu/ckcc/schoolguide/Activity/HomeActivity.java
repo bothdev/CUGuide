@@ -35,14 +35,15 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.statusBar));
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
 
         //Set Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.home_toolbar);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
+        toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
+        setTitle("Home");
 
         //Set Onclick Navigation Drawer
         navigationView = (NavigationView) findViewById(R.id.navigation_view);

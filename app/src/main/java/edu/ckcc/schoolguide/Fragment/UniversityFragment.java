@@ -1,7 +1,9 @@
 package edu.ckcc.schoolguide.Fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -53,7 +55,15 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
         universityAdapter = new UniversityFragment.UniversityAdapter();
         rclUniversity.setAdapter(universityAdapter);
 
-        loadUniversitiesFromServer();
+        //loadUniversitiesFromServer();
+
+        if(App.getInstance(getActivity()).getUniversities() == null){
+            loadUniversitiesFromServer();
+        }else{
+            University[] universities = App.getInstance(getActivity()).getUniversities();
+            universityAdapter.setUniversities(universities);
+        }
+
         return rootView;
     }
 
@@ -67,7 +77,6 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
                 Gson gson = new Gson();
                 University[] universities = gson.fromJson(response, University[].class);
-
                 // Pass data to adapter for displaying
                 universityAdapter.setUniversities(universities);
                 // Save data to Singleton for using later
@@ -79,8 +88,24 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
             @Override
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
+
+                buidDialog(getActivity()).show();
+
                 Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
+            }
+
+            public AlertDialog.Builder buidDialog(Context context){
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("No Internet Connection");
+                builder.setMessage("Please turn on the internet");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                return builder;
             }
         });
 
@@ -99,16 +124,16 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
         TextView txtTel;
         TextView txtEmail;
         TextView txtAddress;
-        NetworkImageView imgArticle;
+        NetworkImageView imgUni;
 
         public UniversityViewHolder(View itemView) {
             super(itemView);
 
-            txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
-            txtTel = (TextView)itemView.findViewById(R.id.txt_number);
-            txtEmail = (TextView) itemView.findViewById(R.id.txt_Email_address);
-            txtAddress = (TextView) itemView.findViewById(R.id.txt_address);
-            imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
+            txtTitle = (TextView)itemView.findViewById(R.id.txt_uni_title);
+            txtTel = (TextView)itemView.findViewById(R.id.txt_uni_tel);
+            txtEmail = (TextView) itemView.findViewById(R.id.txt_uni_Email);
+            txtAddress = (TextView) itemView.findViewById(R.id.txt_uni_address);
+            imgUni = (NetworkImageView)itemView.findViewById(R.id.img_university);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,8 +142,8 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
                     University university = universityAdapter.getUniversities()[position];
                     Intent intent = new Intent(getActivity(), UniversityDetailActivity.class);
                     intent.putExtra("title", university.getTitle());
-                    intent.putExtra("imageUrl", university.getImageUrl());
-                    intent.putExtra("photoUrl", university.getPhotoUrl());
+                    intent.putExtra("image", university.getImage());
+                    intent.putExtra("photo", university.getPhoto());
                     intent.putExtra("description", university.getDescription());
                     intent.putExtra("tel", university.getTel());
                     intent.putExtra("email", university.getEmail());
@@ -163,10 +188,10 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
             holder.txtAddress.setText(university.getAddress());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
-            holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
-            holder.imgArticle.setErrorImageResId(R.drawable.ic_broken_image);
-            holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
-            holder.imgArticle.setImageUrl(university.getImageUrl(), imageLoader);
+            holder.imgUni.setImageUrl(university.getImage(), imageLoader);
+            holder.imgUni.setDefaultImageResId(R.drawable.ic_university_campus);
+            holder.imgUni.setErrorImageResId(R.drawable.ic_university_campus);
+            holder.imgUni.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         }
 
         @Override

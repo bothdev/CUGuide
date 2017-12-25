@@ -33,32 +33,44 @@ public class UniversityDetailActivity extends AppCompatActivity implements Navig
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.statusBar));
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
 
         //Set Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_uni_toolbar);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
+        toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle(university.getTitle());
+        setTitle("University");
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
 
-        Toast.makeText(this, university.getTitle(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, university.getTitle(), Toast.LENGTH_LONG).show();
         TextView textView = (TextView) findViewById(R.id.detail_uni);
         textView.setText(university.getDescription());
 
         imageLoader = App.getInstance(UniversityDetailActivity.this).getImageLoader();
-        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni);
+        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni_detail);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
-        networkImageView.setImageUrl(university.getPhotoUrl(), imageLoader);
+        networkImageView.setImageUrl(university.getPhoto(), imageLoader);
 
-        if(university.getPhotoUrl()==null) {
-            networkImageView.setImageUrl(university.getImageUrl(),imageLoader);
+        if(university.getPhoto()==null) {
+            networkImageView.setImageUrl(university.getImage(),imageLoader);
         }
+
+        TextView textView1 = (TextView) findViewById(R.id.title_uni);
+        textView1.setText(university.getTitle());
+
+        TextView textView2 = (TextView) findViewById(R.id.tel_uni);
+        textView2.setText(university.getTel());
+
+        TextView textView3 = (TextView) findViewById(R.id.email_uni);
+        textView3.setText(university.getEmail());
+
+        TextView textView4 = (TextView) findViewById(R.id.address_uni);
+        textView4.setText(university.getAddress());
     }
 
     @Override

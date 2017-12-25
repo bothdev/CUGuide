@@ -1,44 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="School Guide">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="CU Guide">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/menu_home"
-                    android:title="Home"
-                    android:icon="@drawable/ic_house" />
+                    android:icon="@drawable/ic_house"
+                    android:title="Home" />
                 <item
                     android:id="@+id/menu_university"
-                    android:title="University"
-                    android:icon="@drawable/ic_university_campus" />
+                    android:icon="@drawable/ic_university_campus"
+                    android:title="University" />
                 <item
                     android:id="@+id/menu_events"
-                    android:title="Events"
-                    android:icon="@drawable/ic_events" />
+                    android:icon="@drawable/ic_events"
+                    android:title="Events" />
                 <item
                     android:id="@+id/menu_job"
-                    android:title="Job"
-                    android:icon="@drawable/ic_briefcase" />
+                    android:icon="@drawable/ic_briefcase"
+                    android:title="Job" />
                 <item
                     android:id="@+id/menu_scholarship"
-                    android:title="Scholarship"
-                    android:icon="@drawable/ic_scholar" />
+                    android:icon="@drawable/ic_scholar"
+                    android:title="Scholarship" />
                 <item
                     android:id="@+id/menu_bookmark"
-                    android:title="Bookmark"
-                    android:icon="@drawable/ic_open_book" />
+                    android:icon="@drawable/ic_open_book"
+                    android:title="Bookmark" />
                 <item
                     android:id="@+id/menu_setting"
-                    android:title="Setting"
-                    android:icon="@drawable/ic_settings" />
+                    android:icon="@drawable/ic_settings"
+                    android:title="Setting" />
                 <item
                     android:id="@+id/menu_help"
-                    android:title="Help"
-                    android:icon="@drawable/ic_help" />
+                    android:icon="@drawable/ic_help"
+                    android:title="Help" />
                 <item
                     android:id="@+id/menu_about"
-                    android:title="About us"
-                    android:icon="@drawable/ic_about_us" />
+                    android:icon="@drawable/ic_about_us"
+                    android:title="About us" />
             </group>
         </menu>
     </item>

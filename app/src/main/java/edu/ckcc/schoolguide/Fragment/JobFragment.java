@@ -1,6 +1,10 @@
 package edu.ckcc.schoolguide.Fragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -23,11 +27,11 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import edu.ckcc.schoolguide.Activity.ArticleDetailActivity;
 import edu.ckcc.schoolguide.Activity.Global;
+import edu.ckcc.schoolguide.Activity.JobDetailActivity;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Article;
+import edu.ckcc.schoolguide.model.Job;
 
 public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
@@ -50,39 +54,53 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         articleAdapter = new JobFragment.ArticleAdapter();
         rclJob.setAdapter(articleAdapter);
 
-        loadArticlesFromServer();
-
-        /*if(App.getInstance(this).getArticles() == null){
+        if(App.getInstance(getActivity()).getJobs() == null){
             loadArticlesFromServer();
         }else{
-            Article[] articles = App.getInstance(this).getArticles();
-            articleAdapter.setArticles(articles);
-        }*/
+            Job[] articles = App.getInstance(getActivity()).getJobs();
+            articleAdapter.setJobs(articles);
+        }
+
         return rootView;
     }
 
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
-        String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
+        final String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
-        StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
+        final StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                Article[] articles = gson.fromJson(response, Article[].class);
+                Job[] articles = gson.fromJson(response, Job[].class);
                 // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
+                articleAdapter.setJobs(articles);
                 // Save data to Singleton for using later
-                App.getInstance(getActivity()).setArticles(articles);
+                App.getInstance(getActivity()).setJobs(articles);
                 swipeRefreshLayout.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 swipeRefreshLayout.setRefreshing(false);
+
+                buidDialog(getActivity()).show();
+
                 Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
+            }
 
+            public AlertDialog.Builder buidDialog(Context context){
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("No Internet Connection");
+                builder.setMessage("Please turn on the internet");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                return builder;
             }
         });
 
@@ -112,11 +130,11 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Article article = articleAdapter.getArticles()[position];
-                    Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                    Job article = articleAdapter.getJobs()[position];
+                    Intent intent = new Intent(getActivity(), JobDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("image_url", article.getImageUrl());
-                    Global.selectedArticle = article;
+                    Global.selectedJob = article;
                     startActivity(intent);
                 }
             });
@@ -125,18 +143,18 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     class ArticleAdapter extends RecyclerView.Adapter<JobFragment.ArticleViewHolder> {
 
-        private  Article[] articles;
+        private Job[] articles;
 
-        public ArticleAdapter(){
-            articles = new Article[0];
+        public ArticleAdapter() {
+            articles = new Job[0];
         }
 
-        public void setArticles(Article[] articles) {
+        public void setJobs(Job[] articles) {
             this.articles = articles;
             notifyDataSetChanged();
         }
 
-        public Article[] getArticles() {
+        public Job[] getJobs() {
             return articles;
         }
 
@@ -149,12 +167,12 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         @Override
         public void onBindViewHolder(JobFragment.ArticleViewHolder holder, int position) {
-            Article article = articles[position];
+            Job article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
-            holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
+            holder.imgArticle.setDefaultImageResId(R.drawable.job);
             holder.imgArticle.setErrorImageResId(R.drawable.job);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);

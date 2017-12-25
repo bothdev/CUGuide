@@ -1,9 +1,13 @@
 package edu.ckcc.schoolguide.Fragment;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,62 +27,94 @@ import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
 import edu.ckcc.schoolguide.Activity.ArticleDetailActivity;
+import edu.ckcc.schoolguide.Activity.EventDetailActivity;
 import edu.ckcc.schoolguide.Activity.Global;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
 import edu.ckcc.schoolguide.model.Article;
+import edu.ckcc.schoolguide.model.Event;
 
-public class EventsFragment extends Fragment{
+public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     private RecyclerView rclEvents;
     private EventsFragment.ArticleAdapter articleAdapter;
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_events, container, false);
+        View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-        rclEvents = (RecyclerView)rootView.findViewById(R.id.rcl_events);
+        rclEvents = (RecyclerView)rootView.findViewById(R.id.rcl_view);
         rclEvents.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         articleAdapter = new EventsFragment.ArticleAdapter();
         rclEvents.setAdapter(articleAdapter);
 
+        swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
+        swipeRefreshLayout.setOnRefreshListener(this);
 
-        loadArticlesFromServer();
+        //loadArticlesFromServer();
 
-        /*if(App.getInstance(this).getArticles() == null){
+        if(App.getInstance(getActivity()).getEvents() == null){
             loadArticlesFromServer();
         }else{
-            Article[] articles = App.getInstance(this).getArticles();
-            articleAdapter.setArticles(articles);
-        }*/
+            Event[] articles = App.getInstance(getActivity()).getEvents();
+            articleAdapter.setEvents(articles);
+        }
         return rootView;
     }
 
     private void loadArticlesFromServer(){
+        swipeRefreshLayout.setRefreshing(true);
         String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Gson gson = new Gson();
-                Article[] articles = gson.fromJson(response, Article[].class);
+                Event[] articles = gson.fromJson(response, Event[].class);
                 // Pass data to adapter for displaying
-                articleAdapter.setArticles(articles);
+                articleAdapter.setEvents(articles);
                 // Save data to Singleton for using later
-                App.getInstance(getActivity()).setArticles(articles);
+                App.getInstance(getActivity()).setEvents(articles);
+                swipeRefreshLayout.setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                swipeRefreshLayout.setRefreshing(false);
+
+                buidDialog(getActivity()).show();
+
                 Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
                 Log.d("School Guide", "Load article error: " + error.getMessage());
             }
+
+            public AlertDialog.Builder buidDialog(Context context){
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("No Internet Connection");
+                builder.setMessage("Please turn on the internet");
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                return builder;
+            }
         });
 
+
         requestQueue.add(articlesRequest);
+
+    }
+
+    @Override
+    public void onRefresh() {
+        loadArticlesFromServer();
     }
 
     // Article Adapter
@@ -99,11 +135,11 @@ public class EventsFragment extends Fragment{
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Article article = articleAdapter.getArticles()[position];
-                    Intent intent = new Intent(getActivity(), ArticleDetailActivity.class);
+                    Event article = articleAdapter.getEvents()[position];
+                    Intent intent = new Intent(getActivity(), EventDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("image_url", article.getImageUrl());
-                    Global.selectedArticle = article;
+                    Global.selectedEvent = article;
                     startActivity(intent);
                 }
             });
@@ -112,18 +148,16 @@ public class EventsFragment extends Fragment{
 
     class ArticleAdapter extends RecyclerView.Adapter<EventsFragment.ArticleViewHolder> {
 
-        private  Article[] articles;
+        private  Event[] articles;
 
-        public ArticleAdapter(){
-            articles = new Article[0];
-        }
+        public ArticleAdapter(){ articles = new Event[0]; }
 
-        public void setArticles(Article[] articles) {
+        public void setEvents(Event[] articles) {
             this.articles = articles;
             notifyDataSetChanged();
         }
 
-        public Article[] getArticles() {
+        public Event[] getEvents() {
             return articles;
         }
 
@@ -136,12 +170,12 @@ public class EventsFragment extends Fragment{
 
         @Override
         public void onBindViewHolder(EventsFragment.ArticleViewHolder holder, int position) {
-            Article article = articles[position];
+            Event article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
-            holder.imgArticle.setDefaultImageResId(R.drawable.ic_picture);
+            holder.imgArticle.setDefaultImageResId(R.drawable.events);
             holder.imgArticle.setErrorImageResId(R.drawable.events);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);

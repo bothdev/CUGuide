@@ -36,12 +36,12 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(this.getResources().getColor(R.color.statusBar));
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
 
         //Set Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
-        toolbar.setBackgroundColor(this.getResources().getColor(R.color.toolbar));
+        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_article_toolbar);
+        toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
         setTitle(article.getTitle());
@@ -50,12 +50,12 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
 
-        Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
-        TextView textView = (TextView) findViewById(R.id.detail_uni);
+        Toast.makeText(this, article.getTitle(), Toast.LENGTH_LONG).show();
+        TextView textView = (TextView) findViewById(R.id.detail_article);
         textView.setText(article.getDescription());
 
         imageLoader = App.getInstance(ArticleDetailActivity.this).getImageLoader();
-        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni);
+        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);
 
