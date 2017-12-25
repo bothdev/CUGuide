@@ -1,7 +1,6 @@
 package edu.ckcc.schoolguide.Fragment;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;

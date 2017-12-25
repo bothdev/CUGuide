@@ -56,8 +56,6 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
         swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        //loadArticlesFromServer();
-
         if(App.getInstance(getActivity()).getEvents() == null){
             loadArticlesFromServer();
         }else{
