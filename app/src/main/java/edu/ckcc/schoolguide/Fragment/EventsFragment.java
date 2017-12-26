@@ -67,7 +67,8 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
-        String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
+        final String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
+        //String url = "http://localhost/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override

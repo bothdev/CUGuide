@@ -68,7 +68,8 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
-        String url = "https://schoolguideproject.000webhostapp.com/json/scholarship.php";
+        final String url = "https://schoolguideproject.000webhostapp.com/json/scholarship.php";
+        //String url = "http://localhost/json/scholarship.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override

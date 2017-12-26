@@ -66,6 +66,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
+        //String url = "http://localhost/json/job.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         final StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override

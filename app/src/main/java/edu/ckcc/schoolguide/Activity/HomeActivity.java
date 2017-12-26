@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("Home");
+        //setTitle("Home");
+        setTitle("Univeristy");
 
         //Set Onclick Navigation Drawer
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -55,16 +57,19 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+        //Start up Home Fragment
+        onUniversityClick();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         int id = item.getItemId();
-        if(id == R.id.menu_home){
+        /*if(id == R.id.menu_home){
             onHomeClick();
             setTitle("Home");
-        } else if(id == R.id.menu_university){
+        } else*/
+        if(id == R.id.menu_university){
             onUniversityClick();
             setTitle("University");
         } else if(id == R.id.menu_events){
@@ -92,6 +97,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+    /*
     private void onHomeClick(){
         drawerLayout.closeDrawers();
         HomeFragment homeFragment = new HomeFragment();
@@ -99,7 +105,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.home_frame, homeFragment);
         fragmentTransaction.commit();
-    }
+    }*/
 
     private void onUniversityClick() {
         drawerLayout.closeDrawers();
