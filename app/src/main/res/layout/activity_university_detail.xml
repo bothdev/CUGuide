@@ -32,8 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Loading"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/detail_uni"
@@ -41,8 +42,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:text="Loading"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"/>
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/tel_uni"
@@ -52,7 +54,8 @@
                 android:clickable="true"
                 android:paddingLeft="10dp"
                 android:text="loading"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white" />
 
             <TextView
                 android:id="@+id/email_uni"
@@ -63,7 +66,8 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="loading"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white" />
 
             <TextView
                 android:id="@+id/address_uni"
@@ -74,7 +78,8 @@
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="loading"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import edu.ckcc.schoolguide.Activity.HomeActivity;
 import edu.ckcc.schoolguide.R;
 
 public class MainActivity extends AppCompatActivity{
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void run() {
                 progressBar.setVisibility(View.INVISIBLE);
-                Intent homeIntent = new Intent(MainActivity.this, LoginActivity.class);
+                Intent homeIntent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(homeIntent);
                 finish();
             }
