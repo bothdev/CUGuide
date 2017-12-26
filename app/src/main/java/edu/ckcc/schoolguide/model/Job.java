@@ -16,22 +16,15 @@ public class Job {
     @SerializedName("description")
     private String description;
 
-    @SerializedName("date")
-    private long date;
+    @SerializedName("closingdate")
+    private String closingdate;
 
-    public Job(String title, String imageUrl, String description, long date) {
+    public Job(String title, String imageUrl, String photoUrl, String description, String closingdate) {
         this.title = title;
         this.imageUrl = imageUrl;
+        this.photoUrl = photoUrl;
         this.description = description;
-        this.date = date;
-    }
-
-    public long getDate() {
-        return date;
-    }
-
-    public void setDate(long date) {
-        this.date = date;
+        this.closingdate = closingdate;
     }
 
     public String getTitle() {
@@ -50,13 +43,27 @@ public class Job {
         this.imageUrl = imageUrl;
     }
 
-    public String getPhotoUrl(){ return photoUrl; }
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
 
-    public void setPhotoUrl(){ this.photoUrl = photoUrl; }
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getClosingdate() {
+        return closingdate;
+    }
+
+    public void setClosingdate(String closingdate) {
+        this.closingdate = closingdate;
+    }
 }

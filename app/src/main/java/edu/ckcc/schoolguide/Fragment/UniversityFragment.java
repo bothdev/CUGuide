@@ -70,7 +70,7 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
     private void loadUniversitiesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/university.php";
-        //String url = "http://localhost/json/university.php";
+        //final String url = "http://localhost/json/university.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest universitiesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -92,14 +92,14 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
                 buidDialog(getActivity()).show();
 
-                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("School Guide", "Load article error: " + error.getMessage());
+                Toast.makeText(getActivity(), "Error while loading data from server", Toast.LENGTH_LONG).show();
+                Log.d("School Guide", "Load data error: " + error.getMessage());
             }
 
             public AlertDialog.Builder buidDialog(Context context){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("No Internet Connection");
-                builder.setMessage("Please turn on the internet");
+                builder.setTitle("No Data Connection");
+                builder.setMessage("Error while loading data !!!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

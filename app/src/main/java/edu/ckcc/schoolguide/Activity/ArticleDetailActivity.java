@@ -62,6 +62,9 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         if(article.getPhotoUrl()==null) {
             networkImageView.setImageUrl(article.getImageUrl(),imageLoader);
         }
+
+        TextView textView1 = (TextView) findViewById(R.id.detail_title);
+        textView1.setText(article.getTitle());
     }
 
     @Override

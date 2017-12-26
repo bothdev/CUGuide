@@ -66,7 +66,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
-        //String url = "http://localhost/json/job.php";
+        //final String url = "http://localhost/json/job.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         final StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -86,14 +86,14 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
                 buidDialog(getActivity()).show();
 
-                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("School Guide", "Load article error: " + error.getMessage());
+                Toast.makeText(getActivity(), "Error while loading data from server", Toast.LENGTH_LONG).show();
+                Log.d("School Guide", "Load data error: " + error.getMessage());
             }
 
             public AlertDialog.Builder buidDialog(Context context){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("No Internet Connection");
-                builder.setMessage("Please turn on the internet");
+                builder.setTitle("No Data Connection");
+                builder.setMessage("Error while loading data !!!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -117,6 +117,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         TextView txtTitle;
         TextView txtDes;
+        TextView txtDate;
         NetworkImageView imgArticle;
 
         public ArticleViewHolder(View itemView) {
@@ -124,6 +125,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
             txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
             txtDes = (TextView)itemView.findViewById(R.id.txt_des);
+            txtDate = (TextView)itemView.findViewById(R.id.txt_deadline);
             imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +135,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                     Job article = articleAdapter.getJobs()[position];
                     Intent intent = new Intent(getActivity(), JobDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
+                    intent.putExtra("closingdate", article.getClosingdate());
                     intent.putExtra("image_url", article.getImageUrl());
                     Global.selectedJob = article;
                     startActivity(intent);
@@ -170,6 +173,7 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
             Job article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
+            holder.txtDate.setText(article.getClosingdate());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.job);

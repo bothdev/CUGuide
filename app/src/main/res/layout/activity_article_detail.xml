@@ -25,11 +25,24 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp" />
             <TextView
+                android:id="@+id/detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Loading"
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white"
+                android:textStyle="bold" />
+            <TextView
                 android:id="@+id/detail_article"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:textColor="@android:color/white"/>
+                android:autoLink="all"
+                android:clickable="true"
+                android:text="loading"
+                android:textColor="@android:color/white"
+                android:textColorLink="@android:color/white" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

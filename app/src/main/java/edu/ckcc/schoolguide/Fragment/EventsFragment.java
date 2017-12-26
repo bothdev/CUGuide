@@ -68,7 +68,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void loadArticlesFromServer(){
         swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
-        //String url = "http://localhost/json/events.php";
+        //final String url = "http://localhost/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
         StringRequest articlesRequest = new StringRequest(url, new Response.Listener<String>() {
             @Override
@@ -88,14 +88,14 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
                 buidDialog(getActivity()).show();
 
-                Toast.makeText(getActivity(), "Error while loading articles from server", Toast.LENGTH_LONG).show();
-                Log.d("School Guide", "Load article error: " + error.getMessage());
+                Toast.makeText(getActivity(), "Error while loading data from server", Toast.LENGTH_LONG).show();
+                Log.d("School Guide", "Load data error: " + error.getMessage());
             }
 
             public AlertDialog.Builder buidDialog(Context context){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setTitle("No Internet Connection");
-                builder.setMessage("Please turn on the internet");
+                builder.setTitle("No Data Connection");
+                builder.setMessage("Error while loading data !!!");
                 builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -121,6 +121,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
         TextView txtTitle;
         TextView txtDes;
+        TextView txtDate;
         NetworkImageView imgArticle;
 
         public ArticleViewHolder(View itemView) {
@@ -128,6 +129,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
             txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
             txtDes = (TextView)itemView.findViewById(R.id.txt_des);
+            txtDate = (TextView)itemView.findViewById(R.id.txt_deadline);
             imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +139,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
                     Event article = articleAdapter.getEvents()[position];
                     Intent intent = new Intent(getActivity(), EventDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
+                    intent.putExtra("deadline", article.getDeadline());
                     intent.putExtra("image_url", article.getImageUrl());
                     Global.selectedEvent = article;
                     startActivity(intent);
@@ -172,6 +175,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
             Event article = articles[position];
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
+            holder.txtDate.setText(article.getDeadline());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.events);

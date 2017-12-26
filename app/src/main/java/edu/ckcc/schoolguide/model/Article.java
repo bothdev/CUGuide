@@ -17,20 +17,20 @@ public class Article {
     private String description;
 
     @SerializedName("date")
-    private long date;
+    private String date;
 
-    public Article(String title, String imageUrl, String description, long date) {
+    public Article(String title, String imageUrl, String description, String date) {
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
         this.date = date;
     }
 
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

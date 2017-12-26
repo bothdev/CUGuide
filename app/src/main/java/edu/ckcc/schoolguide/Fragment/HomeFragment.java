@@ -19,8 +19,6 @@ public class HomeFragment extends android.app.Fragment{
 
         View rootView = inflater.inflate(R.layout.fragment, container, false);
 
-        
-
         return rootView;
     }
 }

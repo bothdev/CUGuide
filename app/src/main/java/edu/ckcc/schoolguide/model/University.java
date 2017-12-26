@@ -25,6 +25,16 @@ public class University {
     @SerializedName("address")
     private String address;
 
+    public University(String title, String image, String photo, String description, String tel, String email, String address) {
+        this.title = title;
+        this.image = image;
+        this.photo = photo;
+        this.description = description;
+        this.tel = tel;
+        this.email = email;
+        this.address = address;
+    }
+
     public String getTitle() {
         return title;
     }
