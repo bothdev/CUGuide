@@ -1,6 +1,6 @@
 # School Guide
 
-official website: http://schoolguideproject.000webhostapp.com/
+official website: http://cuguide.000webhostapp.com/
 
 # Members:
   - Chhorn Sockhym -- Project manager
