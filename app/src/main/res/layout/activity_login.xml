@@ -80,7 +80,7 @@
                     android:background="@android:color/transparent"
                     android:textColor="@android:color/white"
                     android:textAllCaps="false"
-                    android:text="Sign Up."/>
+                    android:text="Sign Up"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

@@ -53,6 +53,8 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         articleAdapter = new JobFragment.ArticleAdapter();
         rclJob.setAdapter(articleAdapter);
 
+        swipeRefreshLayout.setRefreshing(false);
+
         if(App.getInstance(getActivity()).getJobs() == null){
             loadArticlesFromServer();
         }else{
@@ -170,7 +172,11 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
         @Override
         public void onBindViewHolder(JobFragment.ArticleViewHolder holder, int position) {
-            Job article = articles[position];
+
+            int art = articles.length-position-1;
+
+            Job article = articles[art];
+
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             holder.txtDate.setText(article.getClosingdate());
@@ -186,5 +192,10 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         public int getItemCount() {
             return articles.length;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

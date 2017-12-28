@@ -57,6 +57,8 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
         //loadArticlesFromServer();
 
+        swipeRefreshLayout.setRefreshing(false);
+
         if(App.getInstance(getActivity()).getScholarship() == null){
             loadArticlesFromServer();
         }else{
@@ -174,7 +176,11 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
         @Override
         public void onBindViewHolder(ScholarshipFragment.ArticleViewHolder holder, int position) {
-            Scholarship article = articles[position];
+
+            int art = articles.length-position-1;
+
+            Scholarship article = articles[art];
+
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             holder.txtDate.setText(article.getDeadline());
@@ -190,5 +196,10 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
         public int getItemCount() {
             return articles.length;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

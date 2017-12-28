@@ -57,6 +57,8 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
         //loadUniversitiesFromServer();
 
+        swipeRefreshLayout.setRefreshing(false);
+
         if(App.getInstance(getActivity()).getUniversities() == null){
             loadUniversitiesFromServer();
         }else{
@@ -182,7 +184,11 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
         @Override
         public void onBindViewHolder(UniversityFragment.UniversityViewHolder holder, int position) {
-            University university = universities[position];
+
+            int uni = universities.length-position-1;
+
+            University university = universities[uni];
+
             holder.txtTitle.setText(university.getTitle());
             holder.txtTel.setText(university.getTel());
             holder.txtEmail.setText(university.getEmail());
@@ -197,5 +203,10 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
         @Override
         public int getItemCount() { return universities.length; }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

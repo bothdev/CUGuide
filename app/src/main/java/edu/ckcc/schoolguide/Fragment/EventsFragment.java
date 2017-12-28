@@ -56,6 +56,8 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
         swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
         swipeRefreshLayout.setOnRefreshListener(this);
 
+        swipeRefreshLayout.setRefreshing(false);
+
         if(App.getInstance(getActivity()).getEvents() == null){
             loadArticlesFromServer();
         }else{
@@ -172,7 +174,11 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
         @Override
         public void onBindViewHolder(EventsFragment.ArticleViewHolder holder, int position) {
-            Event article = articles[position];
+
+            int art = articles.length-position-1;
+
+            Event article = articles[art];
+
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             holder.txtDate.setText(article.getDeadline());
@@ -188,5 +194,10 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
         public int getItemCount() {
             return articles.length;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
     }
 }

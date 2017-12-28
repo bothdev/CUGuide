@@ -21,4 +21,9 @@ public class HomeFragment extends android.app.Fragment{
 
         return rootView;
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
 }
