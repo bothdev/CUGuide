@@ -53,20 +53,22 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
         articleAdapter = new JobFragment.ArticleAdapter();
         rclJob.setAdapter(articleAdapter);
 
-        swipeRefreshLayout.setRefreshing(false);
-
         if(App.getInstance(getActivity()).getJobs() == null){
+            swipeRefreshLayout.setRefreshing(true);
             loadArticlesFromServer();
+            swipeRefreshLayout.setRefreshing(false);
         }else{
+            swipeRefreshLayout.setRefreshing(true);
             Job[] articles = App.getInstance(getActivity()).getJobs();
             articleAdapter.setJobs(articles);
+            swipeRefreshLayout.setRefreshing(false);
         }
 
         return rootView;
     }
 
     private void loadArticlesFromServer(){
-        swipeRefreshLayout.setRefreshing(true);
+
         final String url = "https://schoolguideproject.000webhostapp.com/json/job.php";
         //final String url = "http://localhost/json/job.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -79,12 +81,11 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 articleAdapter.setJobs(articles);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setJobs(articles);
-                swipeRefreshLayout.setRefreshing(false);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                swipeRefreshLayout.setRefreshing(false);
 
                 buidDialog(getActivity()).show();
 
@@ -111,7 +112,9 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadArticlesFromServer();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     // Article Adapter
@@ -134,7 +137,10 @@ public class JobFragment extends Fragment implements SwipeRefreshLayout.OnRefres
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Job article = articleAdapter.getJobs()[position];
+
+                    int art = articleAdapter.getItemCount() - position - 1;
+
+                    Job article = articleAdapter.getJobs()[art];
                     Intent intent = new Intent(getActivity(), JobDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("closingdate", article.getClosingdate());

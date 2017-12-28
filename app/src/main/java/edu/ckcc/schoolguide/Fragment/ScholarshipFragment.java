@@ -55,21 +55,20 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
         articleAdapter = new ScholarshipFragment.ArticleAdapter();
         rclScholarship.setAdapter(articleAdapter);
 
-        //loadArticlesFromServer();
-
-        swipeRefreshLayout.setRefreshing(false);
-
         if(App.getInstance(getActivity()).getScholarship() == null){
+            swipeRefreshLayout.setRefreshing(true);
             loadArticlesFromServer();
+            swipeRefreshLayout.setRefreshing(false);
         }else{
+            swipeRefreshLayout.setRefreshing(true);
             Scholarship[] articles = App.getInstance(getActivity()).getScholarship();
             articleAdapter.setScholarships(articles);
+            swipeRefreshLayout.setRefreshing(false);
         }
         return rootView;
     }
 
     private void loadArticlesFromServer(){
-        swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/scholarship.php";
         //final String url = "http://localhost/json/scholarship.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -82,13 +81,10 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
                 articleAdapter.setScholarships(articles);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setScholarships(articles);
-                swipeRefreshLayout.setRefreshing(false);
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                swipeRefreshLayout.setRefreshing(false);
 
                 buidDialog(getActivity()).show();
 
@@ -115,7 +111,9 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadArticlesFromServer();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     // Article Adapter
@@ -138,7 +136,10 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Scholarship article = articleAdapter.getScholarships()[position];
+
+                    int art = articleAdapter.getItemCount() - position - 1;
+
+                    Scholarship article = articleAdapter.getScholarships()[art];
                     Intent intent = new Intent(getActivity(), ScholarshipDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("deadline", article.getDeadline());

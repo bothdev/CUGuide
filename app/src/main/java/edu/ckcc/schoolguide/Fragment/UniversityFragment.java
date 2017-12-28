@@ -55,22 +55,21 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
         universityAdapter = new UniversityFragment.UniversityAdapter();
         rclUniversity.setAdapter(universityAdapter);
 
-        //loadUniversitiesFromServer();
-
-        swipeRefreshLayout.setRefreshing(false);
-
         if(App.getInstance(getActivity()).getUniversities() == null){
+            swipeRefreshLayout.setRefreshing(true);
             loadUniversitiesFromServer();
+            swipeRefreshLayout.setRefreshing(false);
         }else{
+            swipeRefreshLayout.setRefreshing(true);
             University[] universities = App.getInstance(getActivity()).getUniversities();
             universityAdapter.setUniversities(universities);
+            swipeRefreshLayout.setRefreshing(false);
         }
 
         return rootView;
     }
 
     private void loadUniversitiesFromServer(){
-        swipeRefreshLayout.setRefreshing(true);
         final String url = "https://schoolguideproject.000webhostapp.com/json/university.php";
         //final String url = "http://localhost/json/university.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -84,13 +83,11 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
                 universityAdapter.setUniversities(universities);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setUniversities(universities);
-                swipeRefreshLayout.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                swipeRefreshLayout.setRefreshing(false);
 
                 buidDialog(getActivity()).show();
 
@@ -117,7 +114,9 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadUniversitiesFromServer();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     // University Adapter
@@ -142,7 +141,11 @@ public class UniversityFragment extends Fragment implements SwipeRefreshLayout.O
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    University university = universityAdapter.getUniversities()[position];
+
+                    int uni = universityAdapter.getItemCount()-position-1;
+
+                    University university = universityAdapter.getUniversities()[uni];
+
                     Intent intent = new Intent(getActivity(), UniversityDetailActivity.class);
                     intent.putExtra("title", university.getTitle());
                     intent.putExtra("image", university.getImage());

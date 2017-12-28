@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import edu.ckcc.schoolguide.R;
 
 public class BookmarkActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -27,6 +27,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Article article = Global.selectedArticle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);

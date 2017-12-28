@@ -24,6 +24,7 @@ public class EventDetailActivity extends AppCompatActivity implements Navigation
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Event article = Global.selectedEvent;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);

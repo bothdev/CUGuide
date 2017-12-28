@@ -56,19 +56,21 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
         swipeRefreshLayout= (SwipeRefreshLayout) rootView.findViewById(R.id.swipe_ly);
         swipeRefreshLayout.setOnRefreshListener(this);
 
-        swipeRefreshLayout.setRefreshing(false);
-
         if(App.getInstance(getActivity()).getEvents() == null){
+            swipeRefreshLayout.setRefreshing(true);
             loadArticlesFromServer();
+            swipeRefreshLayout.setRefreshing(false);
         }else{
+            swipeRefreshLayout.setRefreshing(true);
             Event[] articles = App.getInstance(getActivity()).getEvents();
             articleAdapter.setEvents(articles);
+            swipeRefreshLayout.setRefreshing(false);
         }
         return rootView;
     }
 
     private void loadArticlesFromServer(){
-        swipeRefreshLayout.setRefreshing(true);
+
         final String url = "https://schoolguideproject.000webhostapp.com/json/events.php";
         //final String url = "http://localhost/json/events.php";
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
@@ -81,12 +83,11 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 articleAdapter.setEvents(articles);
                 // Save data to Singleton for using later
                 App.getInstance(getActivity()).setEvents(articles);
-                swipeRefreshLayout.setRefreshing(false);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                swipeRefreshLayout.setRefreshing(false);
 
                 buidDialog(getActivity()).show();
 
@@ -115,7 +116,9 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public void onRefresh() {
+        swipeRefreshLayout.setRefreshing(true);
         loadArticlesFromServer();
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     // Article Adapter
@@ -138,7 +141,10 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-                    Event article = articleAdapter.getEvents()[position];
+
+                    int art = articleAdapter.getItemCount() - position - 1;
+
+                    Event article = articleAdapter.getEvents()[art];
                     Intent intent = new Intent(getActivity(), EventDetailActivity.class);
                     intent.putExtra("title", article.getTitle());
                     intent.putExtra("deadline", article.getDeadline());

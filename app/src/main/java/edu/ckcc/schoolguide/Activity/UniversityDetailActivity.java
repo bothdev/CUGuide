@@ -24,6 +24,7 @@ public class UniversityDetailActivity extends AppCompatActivity implements Navig
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         University university = Global.selectedUniversity;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_university_detail);

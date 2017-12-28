@@ -25,6 +25,7 @@ public class ScholarshipDetailActivity extends AppCompatActivity implements Navi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Scholarship article = Global.selectedScholarship;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);

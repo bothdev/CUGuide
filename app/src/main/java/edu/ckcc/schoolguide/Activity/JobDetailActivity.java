@@ -25,6 +25,7 @@ public class JobDetailActivity extends AppCompatActivity implements NavigationVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         Job article = Global.selectedJob;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);

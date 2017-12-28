@@ -9,4 +9,5 @@ public class Global {
     public static Event selectedEvent;
     public static Job selectedJob;
     public static Scholarship selectedScholarship;
+
 }

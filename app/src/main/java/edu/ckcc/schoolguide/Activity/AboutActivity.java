@@ -13,11 +13,6 @@ import android.view.WindowManager;
 import edu.ckcc.schoolguide.R;
  
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    //MapView mapView;
-    //GoogleMap map;
-
-    //private double latitude = 11.568292;
-    //private double longitude = 104.890731;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
