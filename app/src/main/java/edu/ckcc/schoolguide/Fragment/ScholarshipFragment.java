@@ -26,12 +26,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import edu.ckcc.schoolguide.Activity.ArticleDetailActivity;
 import edu.ckcc.schoolguide.Activity.Global;
 import edu.ckcc.schoolguide.Activity.ScholarshipDetailActivity;
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Article;
 import edu.ckcc.schoolguide.model.Scholarship;
 
 public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
@@ -187,8 +185,8 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
             holder.txtDate.setText(article.getDeadline());
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
-            holder.imgArticle.setDefaultImageResId(R.drawable.schoolarship);
-            holder.imgArticle.setErrorImageResId(R.drawable.schoolarship);
+            holder.imgArticle.setDefaultImageResId(R.drawable.scholarship);
+            holder.imgArticle.setErrorImageResId(R.drawable.scholarship);
             holder.imgArticle.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
             holder.imgArticle.setImageUrl(article.getImageUrl(), imageLoader);
         }
