@@ -1,12 +1,12 @@
-# School Guide
+# CU Guide for Android
 
 official website: http://cuguide.000webhostapp.com/
 
 # Members:
-  - Chhorn Sockhym -- Project manager
-  - Chhoeurn Vorreakboth -- Programmer
-  - Leu Kongsun -- Programmer
-  - Chhum Chanchhordeth -- Web developer
+  - Chhorn Sockhym
+  - Chhoeurn Vorreakboth
+  - Leu Kongsun
+  - Chhum Chanchhordeth
 
 # Project:
   - CU Guide
