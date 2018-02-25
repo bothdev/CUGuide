@@ -3,7 +3,7 @@
 official website: http://cuguide.000webhostapp.com/
 
 # Members:
-  - Chhoeurn Vorreakboth
+  - Chhoeurn Vorreakboth
   - Chhum Chanchhordeth
   - Chhorn Sockhym
   - Leu Kongsun
