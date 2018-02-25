@@ -3,11 +3,11 @@
 official website: http://cuguide.000webhostapp.com/
 
 # Members:
-  - Chhorn Sockhym
   - Chhoeurn Vorreakboth
-  - Leu Kongsun
+  - Chhorn Sockhym
   - Chhum Chanchhordeth
-
+  - Leu Kongsun
+  
 # Project:
   - CU Guide
 
