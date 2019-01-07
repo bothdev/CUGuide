@@ -1,6 +1,6 @@
 # CU Guide for Android
 
-official website: https://fb.co/cuguideapp
+official website: https://fb.com/cuguideapp
 
 # Members:
   - Chhoeurn Vorreakboth
