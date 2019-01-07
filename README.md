@@ -21,5 +21,5 @@ official website: http://cuguide.000webhostapp.com/
   - List and Detail of Events
   - List and Detail of University
   - List and Detail of Scholarship
-  - Notification about news Events, Job, and Scholarship
+  - Notification about new Events, Job, and Scholarship
   - Setting has two options change language and app color
