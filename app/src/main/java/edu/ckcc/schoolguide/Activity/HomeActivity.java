@@ -44,8 +44,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        //setTitle("Home");
-        setTitle("Univeristy");
+        setTitle("University");
 
         //Set Onclick Navigation Drawer
         navigationView = (NavigationView) findViewById(R.id.navigation_view);
@@ -64,11 +63,9 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
+
         int id = item.getItemId();
-        /*if(id == R.id.menu_home){
-            onHomeClick();
-            setTitle("Home");
-        } else*/
+
         if(id == R.id.menu_university){
             onUniversityClick();
             setTitle("University");
@@ -97,15 +94,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
-    /*
-    private void onHomeClick(){
-        drawerLayout.closeDrawers();
-        HomeFragment homeFragment = new HomeFragment();
-        android.app.FragmentManager fragmentManager = getFragmentManager();
-        android.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.home_frame, homeFragment);
-        fragmentTransaction.commit();
-    }*/
 
     private void onUniversityClick() {
         drawerLayout.closeDrawers();

@@ -1,31 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bk">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/setting_toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar">
-    </android.support.v7.widget.Toolbar>
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/change_lang"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:text="Change Language"
         android:textAllCaps="false"
-        android:padding="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_toolbar" />
+
     <Button
         android:id="@+id/change_col"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:padding="10dp"
         android:text="Change Color"
         android:textAllCaps="false"
-        android:padding="10dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/change_lang" />
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>
