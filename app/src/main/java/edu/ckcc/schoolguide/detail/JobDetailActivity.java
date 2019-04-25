@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,17 +16,16 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Event;
-import edu.ckcc.schoolguide.model.Scholarship;
+import edu.ckcc.schoolguide.model.Job;
 
-public class ScholarshipDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class JobDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Scholarship article = Global.selectedScholarship;
+        Job article = Global.selectedJob;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
@@ -43,17 +42,17 @@ public class ScholarshipDetailActivity extends AppCompatActivity implements Navi
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("Scholarship");
+        setTitle("Job");
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
 
-        Toast.makeText(this, article.getTitle(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
         TextView textView = (TextView) findViewById(R.id.detail_article);
         textView.setText(article.getDescription());
 
-        imageLoader = App.getInstance(ScholarshipDetailActivity.this).getImageLoader();
+        imageLoader = App.getInstance(JobDetailActivity.this).getImageLoader();
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);

@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
 import edu.ckcc.schoolguide.model.*;
 

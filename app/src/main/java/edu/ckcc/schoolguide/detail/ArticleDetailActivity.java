@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,16 +16,16 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Event;
+import edu.ckcc.schoolguide.model.Article;
 
-public class EventDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ArticleDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Event article = Global.selectedEvent;
+        Article article = Global.selectedArticle;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
@@ -42,17 +42,17 @@ public class EventDetailActivity extends AppCompatActivity implements Navigation
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("Event");
+        setTitle(article.getTitle());
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
 
-        Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, article.getTitle(), Toast.LENGTH_LONG).show();
         TextView textView = (TextView) findViewById(R.id.detail_article);
         textView.setText(article.getDescription());
 
-        imageLoader = App.getInstance(EventDetailActivity.this).getImageLoader();
+        imageLoader = App.getInstance(ArticleDetailActivity.this).getImageLoader();
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);

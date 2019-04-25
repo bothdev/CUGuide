@@ -1,7 +1,5 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
-import android.net.Network;
-import android.support.annotation.NonNull;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -10,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,16 +16,16 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.Article;
+import edu.ckcc.schoolguide.model.Scholarship;
 
-public class ArticleDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ScholarshipDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Article article = Global.selectedArticle;
+        Scholarship article = Global.selectedScholarship;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article_detail);
 
@@ -45,7 +42,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle(article.getTitle());
+        setTitle("Scholarship");
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -55,7 +52,7 @@ public class ArticleDetailActivity extends AppCompatActivity implements Navigati
         TextView textView = (TextView) findViewById(R.id.detail_article);
         textView.setText(article.getDescription());
 
-        imageLoader = App.getInstance(ArticleDetailActivity.this).getImageLoader();
+        imageLoader = App.getInstance(ScholarshipDetailActivity.this).getImageLoader();
         NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
         networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);

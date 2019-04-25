@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -16,18 +16,18 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
 import edu.ckcc.schoolguide.model.App;
-import edu.ckcc.schoolguide.model.University;
+import edu.ckcc.schoolguide.model.Event;
 
-public class UniversityDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class EventDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ImageLoader imageLoader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        University university = Global.selectedUniversity;
+        Event article = Global.selectedEvent;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_university_detail);
+        setContentView(R.layout.activity_article_detail);
 
         ///////////////////////////////
         if (Build.VERSION.SDK_INT>=21){
@@ -38,40 +38,31 @@ public class UniversityDetailActivity extends AppCompatActivity implements Navig
         }
 
         //Set Toolbar
-        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_uni_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_article_toolbar);
         toolbar.setBackgroundColor(this.getResources().getColor(R.color.colorPrimary));
         setSupportActionBar(toolbar);
         getSupportActionBar();
-        setTitle("University");
+        setTitle("Event");
 
         //Show back button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ///////////////////////////////////
 
-        Toast.makeText(this, university.getTitle(), Toast.LENGTH_LONG).show();
-        TextView textView = (TextView) findViewById(R.id.detail_uni);
-        textView.setText(university.getDescription());
+        Toast.makeText(this, article.getTitle(), Toast.LENGTH_SHORT).show();
+        TextView textView = (TextView) findViewById(R.id.detail_article);
+        textView.setText(article.getDescription());
 
-        imageLoader = App.getInstance(UniversityDetailActivity.this).getImageLoader();
-        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_uni_detail);
+        imageLoader = App.getInstance(EventDetailActivity.this).getImageLoader();
+        NetworkImageView networkImageView = (NetworkImageView) findViewById(R.id.image_article);
         networkImageView.setScaleType(NetworkImageView.ScaleType.CENTER_CROP);
-        networkImageView.setImageUrl(university.getPhoto(), imageLoader);
+        networkImageView.setImageUrl(article.getPhotoUrl(), imageLoader);
 
-        if(university.getPhoto()==null) {
-            networkImageView.setImageUrl(university.getImage(),imageLoader);
+        if(article.getPhotoUrl()==null) {
+            networkImageView.setImageUrl(article.getImageUrl(),imageLoader);
         }
 
-        TextView textView1 = (TextView) findViewById(R.id.title_uni);
-        textView1.setText(university.getTitle());
-
-        TextView textView2 = (TextView) findViewById(R.id.tel_uni);
-        textView2.setText(university.getTel());
-
-        TextView textView3 = (TextView) findViewById(R.id.email_uni);
-        textView3.setText(university.getEmail());
-
-        TextView textView4 = (TextView) findViewById(R.id.address_uni);
-        textView4.setText(university.getAddress());
+        TextView textView1 = (TextView) findViewById(R.id.detail_title);
+        textView1.setText(article.getTitle());
     }
 
     @Override
