@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.model;
+package edu.ckcc.schoolguide.utils;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
@@ -7,6 +7,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
+import edu.ckcc.schoolguide.model.Article;
+import edu.ckcc.schoolguide.model.Event;
+import edu.ckcc.schoolguide.model.Job;
+import edu.ckcc.schoolguide.model.Scholarship;
+import edu.ckcc.schoolguide.model.University;
 
 public class App {
 

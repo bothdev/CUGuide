@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Fragment;
+package edu.ckcc.schoolguide.fragment;
 
 import android.app.AlertDialog;
 import android.app.Fragment;
@@ -26,10 +26,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import edu.ckcc.schoolguide.Activity.Global;
-import edu.ckcc.schoolguide.Activity.ScholarshipDetailActivity;
+import edu.ckcc.schoolguide.utils.Global;
+import edu.ckcc.schoolguide.detail.ScholarshipDetailActivity;
 import edu.ckcc.schoolguide.R;
-import edu.ckcc.schoolguide.model.App;
+import edu.ckcc.schoolguide.utils.App;
 import edu.ckcc.schoolguide.model.Scholarship;
 
 public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{

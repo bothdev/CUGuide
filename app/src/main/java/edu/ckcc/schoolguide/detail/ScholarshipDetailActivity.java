@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.activity;
+package edu.ckcc.schoolguide.detail;
 
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +15,8 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 
 import edu.ckcc.schoolguide.R;
-import edu.ckcc.schoolguide.model.App;
+import edu.ckcc.schoolguide.utils.Global;
+import edu.ckcc.schoolguide.utils.App;
 import edu.ckcc.schoolguide.model.Scholarship;
 
 public class ScholarshipDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{

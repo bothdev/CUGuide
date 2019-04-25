@@ -1,4 +1,4 @@
-package edu.ckcc.schoolguide.Startup;
+package edu.ckcc.schoolguide.startup;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import edu.ckcc.schoolguide.Activity.HomeActivity;
+import edu.ckcc.schoolguide.activity.HomeActivity;
 import edu.ckcc.schoolguide.R;
 
 public class MainActivity extends AppCompatActivity{

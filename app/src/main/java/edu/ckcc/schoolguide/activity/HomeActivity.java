@@ -1,10 +1,9 @@
-package edu.ckcc.schoolguide.Activity;
+package edu.ckcc.schoolguide.activity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +13,10 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
-import edu.ckcc.schoolguide.Fragment.HomeFragment;
-import edu.ckcc.schoolguide.Fragment.JobFragment;
-import edu.ckcc.schoolguide.Fragment.EventsFragment;
-import edu.ckcc.schoolguide.Fragment.ScholarshipFragment;
-import edu.ckcc.schoolguide.Fragment.UniversityFragment;
+import edu.ckcc.schoolguide.fragment.JobFragment;
+import edu.ckcc.schoolguide.fragment.EventsFragment;
+import edu.ckcc.schoolguide.fragment.ScholarshipFragment;
+import edu.ckcc.schoolguide.fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

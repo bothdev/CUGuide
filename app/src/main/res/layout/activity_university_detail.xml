@@ -31,9 +31,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="Loading"
                 android:textColor="@android:color/white"
                 android:textColorLink="@android:color/white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -41,9 +43,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="Loading"
                 android:textColor="@android:color/white"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tel_uni"
@@ -51,10 +55,12 @@
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:clickable="true"
+                android:fontFamily="@font/odor_mean_chey"
                 android:paddingLeft="10dp"
                 android:text="loading"
                 android:textColor="@android:color/white"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/email_uni"
@@ -62,11 +68,13 @@
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:clickable="true"
+                android:fontFamily="@font/odor_mean_chey"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="loading"
                 android:textColor="@android:color/white"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/address_uni"
@@ -74,11 +82,13 @@
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:clickable="true"
+                android:fontFamily="@font/odor_mean_chey"
                 android:paddingLeft="10dp"
                 android:paddingTop="10dp"
                 android:text="loading"
                 android:textColor="@android:color/white"
-                android:textColorLink="@android:color/white" />
+                android:textColorLink="@android:color/white"
+                android:textSize="18sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

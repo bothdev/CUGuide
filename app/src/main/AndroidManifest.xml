@@ -16,24 +16,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".Startup.MainActivity">
+        <activity android:name=".startup.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Startup.LoginActivity" />
-        <activity android:name=".Activity.HomeActivity" />
-        <activity android:name=".Activity.SettingActivity" />
-        <activity android:name=".Activity.HelpActivity" />
-        <activity android:name=".Activity.AboutActivity" />
-        <activity android:name=".Activity.ArticleDetailActivity" />
-        <activity android:name=".Activity.UniversityDetailActivity" />
-        <activity android:name=".Activity.EventDetailActivity" />
-        <activity android:name=".Activity.JobDetailActivity" />
-        <activity android:name=".Activity.ScholarshipDetailActivity" />
-        <activity android:name=".Activity.BookmarkActivity"></activity>
+        <activity android:name=".startup.LoginActivity" />
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.HelpActivity" />
+        <activity android:name=".activity.AboutActivity" />
+        <activity android:name=".detail.ArticleDetailActivity" />
+        <activity android:name=".detail.UniversityDetailActivity" />
+        <activity android:name=".detail.EventDetailActivity" />
+        <activity android:name=".detail.JobDetailActivity" />
+        <activity android:name=".detail.ScholarshipDetailActivity" />
+        <activity android:name=".activity.BookmarkActivity"></activity>
     </application>
 
 </manifest>
