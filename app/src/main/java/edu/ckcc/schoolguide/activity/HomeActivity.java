@@ -1,6 +1,7 @@
 package edu.ckcc.schoolguide.activity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,15 +10,24 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.BounceInterpolator;
+import android.view.animation.TranslateAnimation;
 
 import edu.ckcc.schoolguide.fragment.JobFragment;
 import edu.ckcc.schoolguide.fragment.EventsFragment;
 import edu.ckcc.schoolguide.fragment.ScholarshipFragment;
 import edu.ckcc.schoolguide.fragment.UniversityFragment;
 import edu.ckcc.schoolguide.R;
+import tourguide.tourguide.Overlay;
+import tourguide.tourguide.Pointer;
+import tourguide.tourguide.ToolTip;
+import tourguide.tourguide.TourGuide;
 
 public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -76,13 +86,13 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if(id == R.id.menu_scholarship){
             onScholarshipClick();
             setTitle("Scholarship");
-        } else if(id == R.id.menu_bookmark){
-            intent = new Intent(this, BookmarkActivity.class);
-            startActivity(intent);
-        } else if(id == R.id.menu_setting){
-            intent = new Intent(this, SettingActivity.class);
-            startActivity(intent);
-        } else if(id == R.id.menu_help){
+        } //else if(id == R.id.menu_bookmark){
+//            intent = new Intent(this, BookmarkActivity.class);
+//            startActivity(intent);
+//        } else if(id == R.id.menu_setting){
+//            intent = new Intent(this, SettingActivity.class);
+//            startActivity(intent); }
+        else if(id == R.id.menu_help){
             intent = new Intent(this, HelpActivity.class);
             startActivity(intent);
         } else if(id == R.id.menu_about){

@@ -2,21 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_midnight_blue"
     android:gravity="center"
-    android:orientation="vertical"
-    android:background="@drawable/bk">
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:src="@drawable/logo" />
+
             <EditText
                 android:id="@+id/etxt_username"
                 android:layout_width="match_parent"
@@ -24,36 +28,38 @@
                 android:layout_margin="10dp"
                 android:hint="Username"
                 android:text="schoolguide"
-                android:textColor="@android:color/background_light"/>
+                android:textColor="@android:color/background_light" />
+
             <EditText
                 android:id="@+id/etxt_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:hint="Password"
-                android:text="12345678"
                 android:inputType="textPassword"
-                android:textColor="@android:color/background_light"/>
+                android:text="12345678"
+                android:textColor="@android:color/background_light" />
 
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="Remember Me"
-                android:textColor="@android:color/background_light"/>
+                android:textColor="@android:color/background_light" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="onLoginButtonClick"
                 android:background="@android:drawable/editbox_background"
-                android:textAllCaps="false"
+                android:onClick="onLoginButtonClick"
                 android:text="Login"
-                android:visibility="visible"/>
+                android:textAllCaps="false"
+                android:visibility="visible" />
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:visibility="gone"/>
+                android:visibility="gone" />
             <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -64,23 +70,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/-->
             <LinearLayout
-                android:paddingTop="50dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:paddingTop="50dp"
                 android:weightSum="2">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Don't have an account yet ?"
-                    android:textColor="@android:color/white"/>
+                    android:textColor="@android:color/white" />
+
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
-                    android:textColor="@android:color/white"
+                    android:text="Sign Up"
                     android:textAllCaps="false"
-                    android:text="Sign Up"/>
+                    android:textColor="@android:color/white" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

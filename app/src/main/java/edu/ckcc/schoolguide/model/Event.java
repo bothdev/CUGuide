@@ -43,9 +43,7 @@ public class Event {
         this.imageUrl = imageUrl;
     }
 
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
+    public String getPhotoUrl() { return photoUrl; }
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;

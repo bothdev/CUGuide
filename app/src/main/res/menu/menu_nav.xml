@@ -24,14 +24,14 @@
                     android:id="@+id/menu_scholarship"
                     android:icon="@drawable/ic_scholar"
                     android:title="Scholarship" />
-                <item
-                    android:id="@+id/menu_bookmark"
-                    android:icon="@drawable/ic_open_book"
-                    android:title="Bookmark" />
-                <item
-                    android:id="@+id/menu_setting"
-                    android:icon="@drawable/ic_settings"
-                    android:title="Setting" />
+<!--                <item-->
+<!--                    android:id="@+id/menu_bookmark"-->
+<!--                    android:icon="@drawable/ic_open_book"-->
+<!--                    android:title="Bookmark" />-->
+<!--                <item-->
+<!--                    android:id="@+id/menu_setting"-->
+<!--                    android:icon="@drawable/ic_settings"-->
+<!--                    android:title="Setting" />-->
                 <item
                     android:id="@+id/menu_help"
                     android:icon="@drawable/ic_help"
