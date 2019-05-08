@@ -6,4 +6,6 @@
     <color name="statusBar">#b71c1c</color>
     <color name="toolbar">#ef5350</color>
     <color name="selector">#ffcdd2</color>
+    <color name="appBackground">#2A4453</color>
+    <color name="whileColor">#ffffff</color>
 </resources>

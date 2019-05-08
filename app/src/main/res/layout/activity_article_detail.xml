@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_midnight_blue"
+    android:background="@drawable/bk"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -50,11 +50,11 @@
                 android:autoLink="all"
                 android:clickable="true"
                 android:fontFamily="@font/odor_mean_chey"
+                android:lineSpacingMultiplier="1.3"
                 android:text="loading"
                 android:textColor="@android:color/white"
                 android:textColorLink="@android:color/white"
-                android:textSize="17sp"
-                android:lineSpacingMultiplier="1.3"/>
+                android:textSize="17sp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

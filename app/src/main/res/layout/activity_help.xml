@@ -13,7 +13,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/color_midnight_blue">
+        android:background="@drawable/bk">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/uni"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="University"
                 android:textColor="@android:color/white" />
 
@@ -42,6 +43,7 @@
                 android:layout_below="@id/tuniver"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/uni"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="List all universities in Cambodia especially in Phnom Penh."
                 android:textColor="@android:color/white" />
 
@@ -60,6 +62,7 @@
                 android:layout_below="@id/Udes"
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@id/events"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="Events"
                 android:textColor="@android:color/white" />
 
@@ -70,7 +73,8 @@
                 android:layout_below="@id/tnews"
                 android:layout_marginBottom="10dp"
                 android:layout_toRightOf="@id/uni"
-                android:text="List all events in the wold especially in Phnom Penh"
+                android:fontFamily="@font/odor_mean_chey"
+                android:text="List all events in the world especially in Phnom Penh"
                 android:textColor="@android:color/white" />
 
             <ImageView
@@ -89,6 +93,7 @@
                 android:layout_below="@id/tnews"
                 android:layout_marginTop="60dp"
                 android:layout_toRightOf="@id/Job"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="Job"
                 android:textColor="@android:color/white" />
 
@@ -99,6 +104,7 @@
                 android:layout_below="@id/tjob"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/uni"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="List all jobs in Cambodia especially in Phnom Penh."
                 android:textColor="@android:color/white" />
 
@@ -117,6 +123,7 @@
                 android:layout_below="@id/Jdes"
                 android:layout_marginTop="25dp"
                 android:layout_toRightOf="@id/Job"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="Scholarship"
                 android:textColor="@android:color/white" />
 
@@ -127,6 +134,7 @@
                 android:layout_below="@id/tscholar"
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/uni"
+                android:fontFamily="@font/odor_mean_chey"
                 android:text="List all scholarship."
                 android:textColor="@android:color/white" />
 
@@ -136,7 +144,8 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/sdes"
                 android:layout_margin="20dp"
-                android:src="@drawable/ic_open_book" />
+                android:src="@drawable/ic_open_book"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tbookmark"
@@ -146,7 +155,8 @@
                 android:layout_marginTop="25dp"
                 android:layout_toRightOf="@id/Job"
                 android:text="Bookmark"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/bmdes"
@@ -156,7 +166,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_toRightOf="@id/uni"
                 android:text="Saved Title on your bookmark"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
 
             <ImageView
                 android:id="@+id/setting"
@@ -164,7 +175,8 @@
                 android:layout_height="60dp"
                 android:layout_below="@id/bmdes"
                 android:layout_margin="20dp"
-                android:src="@drawable/ic_settings" />
+                android:src="@drawable/ic_settings"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tsetting"
@@ -174,7 +186,8 @@
                 android:layout_marginTop="30dp"
                 android:layout_toRightOf="@id/Job"
                 android:text="Setting"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/setdes"
@@ -183,7 +196,8 @@
                 android:layout_below="@id/tsetting"
                 android:layout_toRightOf="@id/uni"
                 android:text="Change color or change style of App "
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:visibility="gone"/>
         </RelativeLayout>
     </ScrollView>
 </LinearLayout>

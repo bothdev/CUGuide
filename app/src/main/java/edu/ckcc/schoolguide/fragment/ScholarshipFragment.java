@@ -119,6 +119,7 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
         TextView txtTitle;
         TextView txtDes;
+        TextView txtDeadline;
         TextView txtDate;
         NetworkImageView imgArticle;
 
@@ -127,6 +128,7 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
 
             txtTitle = (TextView)itemView.findViewById(R.id.txt_title);
             txtDes = (TextView)itemView.findViewById(R.id.txt_des);
+            txtDeadline = (TextView)itemView.findViewById(R.id.deadline);
             txtDate = (TextView)itemView.findViewById(R.id.txt_deadline);
             imgArticle = (NetworkImageView)itemView.findViewById(R.id.img_article);
 
@@ -183,6 +185,10 @@ public class ScholarshipFragment extends Fragment implements SwipeRefreshLayout.
             holder.txtTitle.setText(article.getTitle());
             holder.txtDes.setText(article.getDescription());
             holder.txtDate.setText(article.getDeadline());
+            if (article.getDeadline() != ""){
+                holder.txtDeadline.setVisibility(View.GONE);
+                holder.txtDate.setVisibility(View.GONE);
+            }
             // Display image using NetworkImageView
             ImageLoader imageLoader = App.getInstance(getActivity()).getImageLoader();
             holder.imgArticle.setDefaultImageResId(R.drawable.scholarship);

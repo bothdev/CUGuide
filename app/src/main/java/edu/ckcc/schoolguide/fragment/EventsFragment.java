@@ -64,6 +64,7 @@ public class EventsFragment extends Fragment implements SwipeRefreshLayout.OnRef
             articleAdapter.setEvents(articles);
             swipeRefreshLayout.setRefreshing(false);
         }
+
         return rootView;
     }
 
