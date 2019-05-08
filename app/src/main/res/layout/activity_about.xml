@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@color/color_midnight_blue"
+    android:background="@color/appBackground"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <Toolbar
         android:id="@+id/about_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"></android.support.v7.widget.Toolbar>
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        tools:targetApi="lollipop"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
