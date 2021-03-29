@@ -1,7 +1,5 @@
 # CU Guide for Android
 
-official website: https://fb.com/khonnect.org
-
 # Members:
   - Chhoeurn Vorreakboth
   - Chhum Chanchhordeth
